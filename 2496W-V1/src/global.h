@@ -1,3 +1,6 @@
+#ifndef _GLOBAL_
+#define _GLOBAL_
+
 #include "main.h"
 
 #include "pros/misc.h"
@@ -9,9 +12,6 @@
 
 using namespace pros;
 using namespace std;
-
-#ifndef _GLOBALS_
-#define _GLOBALS_
 
 
 

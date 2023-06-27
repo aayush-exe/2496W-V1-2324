@@ -1,3 +1,6 @@
+#ifndef _autonfunc_
+#define _autonfunc_
+
 #include "main.h"
 #include "global.h"
 
@@ -11,9 +14,6 @@
 
 using namespace pros;
 using namespace std;
-
-#ifndef _autuonfunc_
-#define _autuonfunc_
 
 
 

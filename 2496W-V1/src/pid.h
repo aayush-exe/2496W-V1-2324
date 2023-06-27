@@ -1,3 +1,6 @@
+#ifndef _PID_
+#define _PID_
+
 #include "main.h"
 #include "global.h"
 #include "auton_func.h"
@@ -12,8 +15,6 @@
 using namespace pros;
 using namespace std;
 
-#ifndef _PID_
-#define _PID_
 
 
 
