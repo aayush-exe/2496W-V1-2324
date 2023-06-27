@@ -1,4 +1,6 @@
 #include "main.h"
+#include "global.h"
+
 
 #include "pros/misc.h"
 #include "pros/rtos.h"
@@ -10,8 +12,8 @@
 using namespace pros;
 using namespace std;
 
-#ifndef _GLOBALS_
-#define _GLOBALS_
+#ifndef _autuonfunc_
+#define _autuonfunc_
 
 
 

@@ -1,4 +1,19 @@
 #include "main.h"
+#include "global.h"
+#include "driver.h"
+#include "auton.h"
+#include "auton_func.h"
+#include "pid.h"
+
+#include "pros/misc.h"
+#include "pros/rtos.h"
+#include <iostream>
+#include <fstream>
+#include <list>
+#include <iostream>
+
+using namespace pros;
+using namespace std;
 
 /**
  * A callback function for LLEMU's center button.
