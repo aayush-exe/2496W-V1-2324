@@ -2,24 +2,19 @@
 #define _GLOBAL_
 
 #include "main.h"
-
-#include "pros/misc.h"
-#include "pros/rtos.h"
-#include <iostream>
-#include <fstream>
-#include <list>
 #include <iostream>
 
 using namespace pros;
 using namespace std;
 
-namespace glb{
-    #define P_RF 1
-    #define P_RM 2
-    #define P_RB 3
-    #define P_LF 4
-    #define P_LM 5
-    #define P_LB 6
+namespace glb
+{
+    #define P_RF 9
+    #define P_RM 18
+    #define P_RB 20
+    #define P_LF 5
+    #define P_LM 17
+    #define P_LB 19
     // temp ports
  
     Motor RF (P_RF, E_MOTOR_GEARSET_06);
