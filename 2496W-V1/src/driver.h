@@ -37,6 +37,22 @@ void drive()
     delay(10);
 }
 
+void intake()
+{
+    if(con.get_digital(E_CONTROLLER_DIGITAL_R1)) { // then allow for manual control through R1 and R2
+			Intake.move(127);
+    }
+    else if(con.get_digital(E_CONTROLLER_DIGITAL_R2)){
+        Intake.move(-127);
+    }
+    else {
+        Intake.move(0);
+    }
+
+
+
+}
+
 
 
 #endif

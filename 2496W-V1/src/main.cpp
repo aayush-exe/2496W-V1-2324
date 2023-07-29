@@ -79,6 +79,7 @@ void opcontrol() {
 	long long time = 0;
 	while(true){
 		drive();
+		intake();
 		delay(10);
 		time += 10;
 	}
