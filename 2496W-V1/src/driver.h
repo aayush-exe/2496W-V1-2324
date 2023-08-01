@@ -33,14 +33,12 @@ void drive()
     LF.move(left);
     LM.move(left);
     LB.move(left);	
-
-    delay(10);
 }
 
 void intake()
 {
     if(con.get_digital(E_CONTROLLER_DIGITAL_R1)) { // then allow for manual control through R1 and R2
-			Intake.move(127);
+		Intake.move(127);
     }
     else if(con.get_digital(E_CONTROLLER_DIGITAL_R2)){
         Intake.move(-127);
@@ -48,11 +46,27 @@ void intake()
     else {
         Intake.move(0);
     }
-
-
-
 }
 
 
+void cata()
+{
+    bool cataPressed;
+    bool cataCheck = cataLimit.get_value();
+    
+    if (con.get_digital(pros::E_CONTROLLER_DIGITAL_L1)){
+        cataPressed = true;
+    }
+    if (cataCheck == false){
+        Cata.move(-127);
+        cataPressed = false;
+    }
+    else if (cataPressed == true && cataCheck == true){
+        Cata.move(-127);
+    }
+    else{
+        Cata.move(0);
+    }
+}
 
 #endif

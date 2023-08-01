@@ -80,6 +80,7 @@ void opcontrol() {
 	while(true){
 		drive();
 		intake();
+		cata();
 		delay(10);
 		time += 10;
 	}
