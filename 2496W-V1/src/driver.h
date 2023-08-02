@@ -51,7 +51,7 @@ void intake()
 
 void cata()
 {
-    bool cataPressed;
+    static bool cataPressed;
     bool cataCheck = cataLimit.get_value();
     
     if (con.get_digital(pros::E_CONTROLLER_DIGITAL_L1)){
