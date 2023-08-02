@@ -21,25 +21,18 @@ void drive()
         chas.spin_right(left - right);
     }
     else
-    {
         chas.stop();
-    }
+
 }
 
 void intake()
 {
     if(con.get_digital(E_CONTROLLER_DIGITAL_R1)) 
-    {
 		Intake.move(127);
-    }
     else if(con.get_digital(E_CONTROLLER_DIGITAL_R2))
-    {
         Intake.move(-127);
-    }
     else 
-    {
         Intake.move(0);
-    }
 }
 
 
@@ -64,7 +57,8 @@ void cata(int time)
     else if (cataPressed && cataCheck)
     {
         if (!prevCataCheck && cataCheck)
-            delay(delay_launch ? 1000 : 0);
+            Cata.move(0);
+            delay(delay_launch ? 300 : 0);
         Cata.move(-127);
     }
     else
@@ -85,7 +79,6 @@ void print_info(int time)
         con.print(1, 0, "Chassis Temp: %.1lf         ", chas.temp());
     if(time % 150 == 0)
         con.print(2, 0, cataLimit.get_value() ? "On     " : "Off     ");
-
 }
 
 #endif
