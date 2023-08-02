@@ -12,38 +12,32 @@ using namespace std;
 
 void drive()
 {
-    int power = con.get_analog(ANALOG_LEFT_Y); // left joystick y axis is power
-    int valForTurn = con.get_analog(ANALOG_RIGHT_X); // right joystick x axis controls turn
-    // double turn = (abs(valForTurn) * valForTurn / 75);
+    double left = abs(con.get_analog(E_CONTROLLER_ANALOG_LEFT_Y)) > 10 ? con.get_analog(E_CONTROLLER_ANALOG_LEFT_Y) : 0;
+    double right = abs(con.get_analog(E_CONTROLLER_ANALOG_RIGHT_X)) > 10 ? con.get_analog(E_CONTROLLER_ANALOG_RIGHT_X) : 0;
 
-    //sensitivity commands
-    // double turn = (3000*valForTurn + 0.2*pow(valForTurn, 3)); 
-    // turn /= 5000;
-    
-    double turn = valForTurn; 
-    turn /= 1.45;
-    // turn = turn / 1.25
-    
-    int left = power + turn; // implement turning
-    int right = power - turn; 
-
-    RF.move(right);
-    RM.move(right); //hii
-    RB.move(right); // hi
-    LF.move(left);
-    LM.move(left);
-    LB.move(left);	
+    if(left || right)
+    {
+        chas.spin_left(left + right);
+        chas.spin_right(left - right);
+    }
+    else
+    {
+        chas.stop();
+    }
 }
 
 void intake()
 {
-    if(con.get_digital(E_CONTROLLER_DIGITAL_R1)) { // then allow for manual control through R1 and R2
+    if(con.get_digital(E_CONTROLLER_DIGITAL_R1)) 
+    {
 		Intake.move(127);
     }
-    else if(con.get_digital(E_CONTROLLER_DIGITAL_R2)){
+    else if(con.get_digital(E_CONTROLLER_DIGITAL_R2))
+    {
         Intake.move(-127);
     }
-    else {
+    else 
+    {
         Intake.move(0);
     }
 }
@@ -53,20 +47,39 @@ void cata()
 {
     static bool cataPressed;
     bool cataCheck = cataLimit.get_value();
+    static bool delay_launch = false;
     
-    if (con.get_digital(pros::E_CONTROLLER_DIGITAL_L1)){
+    if (con.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_B))
+        delay_launch = !delay_launch;
+
+    if (con.get_digital(pros::E_CONTROLLER_DIGITAL_L1))
         cataPressed = true;
-    }
-    if (cataCheck == false){
+
+    if (cataCheck == false)
+    {
         Cata.move(-127);
         cataPressed = false;
     }
-    else if (cataPressed == true && cataCheck == true){
+    else if (cataPressed == true && cataCheck == true)
+        delay(delay_launch ? 300 : 0);
         Cata.move(-127);
-    }
-    else{
+    else
         Cata.move(0);
-    }
+
+
+    if(time % 50 == 0 && time % 100 != 0 && time % 150 != 0)
+        con.print(0, 0, delay_launch ? "MATCH LOAD" : "FULL SPEED");
+    
+}
+
+void print_info(int time)
+{
+    // first line in cata func
+    if(time % 100 == 0 && time % 150 != 0) 
+        con.print(1, 0, "Chassis Temp: %.1lf         ", chas.temp());
+    // if(time % 150 == 0)
+    //     con.print(2, 0, "auton: %s         ", (*auton).get_name());
+
 }
 
 #endif

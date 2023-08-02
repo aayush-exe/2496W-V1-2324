@@ -75,13 +75,16 @@ void autonomous() {}
  * operator control task will be stopped. Re-enabling the robot will restart the
  * task, not resume it from where it left off.
  */
-void opcontrol() {
+void opcontrol() 
+{
 	long long time = 0;
-	while(true){
+	while(true)
+	{
 		drive();
 		intake();
 		cata();
-		delay(10);
-		time += 10;
+		print_info(time);
+		delay(2);
+		time += 2;
 	}
 }
