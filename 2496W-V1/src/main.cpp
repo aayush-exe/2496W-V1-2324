@@ -82,7 +82,7 @@ void opcontrol()
 	{
 		drive();
 		intake();
-		cata();
+		cata(time);
 		print_info(time);
 		delay(2);
 		time += 2;

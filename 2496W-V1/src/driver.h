@@ -43,10 +43,11 @@ void intake()
 }
 
 
-void cata()
+void cata(int time)
 {
     static bool cataPressed;
     bool cataCheck = cataLimit.get_value();
+    static bool prevCataCheck = cataCheck;
     static bool delay_launch = false;
     
     if (con.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_B))
@@ -55,20 +56,25 @@ void cata()
     if (con.get_digital(pros::E_CONTROLLER_DIGITAL_L1))
         cataPressed = true;
 
-    if (cataCheck == false)
+    if (!cataCheck)
     {
         Cata.move(-127);
         cataPressed = false;
     }
-    else if (cataPressed == true && cataCheck == true)
-        delay(delay_launch ? 300 : 0);
+    else if (cataPressed && cataCheck)
+    {
+        if (!prevCataCheck && cataCheck)
+            delay(delay_launch ? 1000 : 0);
         Cata.move(-127);
+    }
     else
         Cata.move(0);
 
 
     if(time % 50 == 0 && time % 100 != 0 && time % 150 != 0)
-        con.print(0, 0, delay_launch ? "MATCH LOAD" : "FULL SPEED");
+        con.print(0, 0, delay_launch ? "MATCH LOAD     " : "FULL SPEED     ");
+    
+    prevCataCheck = cataCheck;
     
 }
 
@@ -77,8 +83,8 @@ void print_info(int time)
     // first line in cata func
     if(time % 100 == 0 && time % 150 != 0) 
         con.print(1, 0, "Chassis Temp: %.1lf         ", chas.temp());
-    // if(time % 150 == 0)
-    //     con.print(2, 0, "auton: %s         ", (*auton).get_name());
+    if(time % 150 == 0)
+        con.print(2, 0, cataLimit.get_value() ? "On     " : "Off     ");
 
 }
 
