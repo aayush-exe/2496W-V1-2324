@@ -11,12 +11,12 @@ namespace glb
 {
     // ports
     #define P_IMU 2
-    #define P_RF 1
+    #define P_RF 13
     #define P_RM 18
     #define P_RB 20
     #define P_LF 8
     #define P_LM 17
-    #define P_LB 19
+    #define P_LB 11
     #define P_INTAKE 10
     #define P_CATA 15
     #define P_DISTANCE 3
@@ -24,7 +24,7 @@ namespace glb
    
     //objects
     Chassis chas({P_LF, P_LM, P_LB}, {P_RF, P_RM, P_RB}, pros::E_MOTOR_GEARSET_06, false);
-    Motor Intake (P_INTAKE, E_MOTOR_GEARSET_06,1);
+    Motor Intake (P_INTAKE, E_MOTOR_GEARSET_06);
     Motor Cata (P_CATA, E_MOTOR_GEARSET_36,1);
     Imu imu(P_IMU);
     Distance distance(P_DISTANCE);

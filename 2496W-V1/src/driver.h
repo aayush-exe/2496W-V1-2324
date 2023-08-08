@@ -61,7 +61,7 @@ void cata(int time)
             delay(delay_launch ? 300 : 0);
         Cata.move(-127);
     }
-    else
+    else 
         Cata.move(0);
 
 
