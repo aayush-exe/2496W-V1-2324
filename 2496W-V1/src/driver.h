@@ -15,7 +15,7 @@ void drive()
     double left = abs(con.get_analog(E_CONTROLLER_ANALOG_LEFT_Y)) > 10 ? con.get_analog(E_CONTROLLER_ANALOG_LEFT_Y) : 0;
     double right = abs(con.get_analog(E_CONTROLLER_ANALOG_RIGHT_X)) > 10 ? con.get_analog(E_CONTROLLER_ANALOG_RIGHT_X) : 0;
 
-    right /= 1.15;
+    right /= 1.2;
     if(left || right)
     {
         chas.spin_left(left + right);
@@ -71,6 +71,27 @@ void cata(int time)
     
     prevCataCheck = cataCheck;
     
+}
+
+void wings(){
+    static bool PWingsButton;
+    static bool PWingsActive;
+    if(con.get_digital(E_CONTROLLER_DIGITAL_L2)) {
+			if(!PWingsButton) {
+				PWingsButton = true;
+				if(PWingsActive) {
+					PWingsActive = !PWingsActive;
+					wingPiston.set_value(false);
+				}
+				else {
+					PWingsActive = !PWingsActive;
+					wingPiston.set_value(true);
+				}
+			}
+		}
+    else PWingsButton = false;
+
+
 }
 
 void print_info(int time)

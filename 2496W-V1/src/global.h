@@ -21,6 +21,7 @@ namespace glb
     #define P_CATA 15
     #define P_DISTANCE 3
     #define P_CATASWITCH 'A'
+    #define P_WINGS 'B'
    
     //objects
     Chassis chas({P_LF, P_LM, P_LB}, {P_RF, P_RM, P_RB}, pros::E_MOTOR_GEARSET_06, false);
@@ -30,5 +31,6 @@ namespace glb
     Distance distance(P_DISTANCE);
     ADIDigitalIn cataLimit(P_CATASWITCH);
     Controller con(E_CONTROLLER_MASTER);
+    ADIDigitalOut wingPiston(P_WINGS);
 }
 #endif
