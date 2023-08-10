@@ -73,17 +73,22 @@ void cata(int time)
     
 }
 
-void wings(){
+void wings()
+{
     static bool PWingsButton;
     static bool PWingsActive;
-    if(con.get_digital(E_CONTROLLER_DIGITAL_L2)) {
-			if(!PWingsButton) {
+    if(con.get_digital(E_CONTROLLER_DIGITAL_L2)) 
+    {
+			if(!PWingsButton) 
+            {
 				PWingsButton = true;
-				if(PWingsActive) {
+				if(PWingsActive) 
+                {
 					PWingsActive = !PWingsActive;
 					wingPiston.set_value(false);
 				}
-				else {
+				else 
+                {
 					PWingsActive = !PWingsActive;
 					wingPiston.set_value(true);
 				}
