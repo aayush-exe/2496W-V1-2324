@@ -6,9 +6,9 @@
 #include <iostream>
 
 
-using namespace pros;
+//using namespace pros;
 using namespace glb;
-using namespace std;
+//using namespace std;
 
 void drive()
 {
@@ -26,7 +26,7 @@ void drive()
 
 }
 
-void intake()
+void intakeCon()
 {
     if(con.get_digital(E_CONTROLLER_DIGITAL_R1)) 
 		intake.move(127);
@@ -37,7 +37,7 @@ void intake()
 }
 
 
-void cata(int time)
+void cataCon(int time)
 {
     static bool cataPressed;
     bool cataCheck = cataLimit.get_value();
@@ -59,7 +59,7 @@ void cata(int time)
     {
         if (!prevCataCheck && cataCheck)
         {
-            Cata.move(0);
+            cata.move(0);
             delay(delay_launch ? 300 : 0);
         }
         cata.move(-127);

@@ -89,8 +89,8 @@ void opcontrol()
 		if(chassis_on) drive();
 		else chas.stop();
 
-		intake();
-		cata(time);
+		intakeCon();
+		cataCon(time);
 		piston_cont();
 		print_info(time, chassis_on);
 
