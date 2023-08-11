@@ -82,13 +82,21 @@ void autonomous() {}
 void opcontrol() 
 {
 	long long time = 0;
+	bool chassis_on = true;
 
 	while(true)
 	{
-		drive();
+		if(chassis_on) drive();
+		else chas.stop();
+
 		intake();
 		cata(time);
-		print_info(time);
+		piston_cont();
+		print_info(time, chassis_on);
+
+		if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_RIGHT)) chassis_on = !chassis_on;
+		if(con.get_digital(E_CONTROLLER_DIGITAL_UP) && chassis_on) autonomous();
+
 		delay(2);
 		time += 2;
 	}

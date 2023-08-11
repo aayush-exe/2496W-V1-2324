@@ -1,5 +1,5 @@
-#ifndef _autonfunc_
-#define _autonfunc_
+#ifndef __AUTFUNC__
+#define __AUTFUNC__
 
 #include "main.h"
 #include "global.h"

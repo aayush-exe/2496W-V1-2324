@@ -1,8 +1,9 @@
-#ifndef _GLOBAL_
-#define _GLOBAL_
+#ifndef __GLOBAL__
+#define __GLOBAL__
 
 #include "main.h"
 #include "lib/chassis.h"
+#include "lib/piston.h"
 
 using namespace pros;
 using namespace std;
@@ -22,15 +23,22 @@ namespace glb
     #define P_DISTANCE 3
     #define P_CATASWITCH 'A'
     #define P_WINGS 'B'
+    #define P_INTAKEP 'C'
+    #define P_SPIKE 'D'
    
     //objects
     Chassis chas({P_LF, P_LM, P_LB}, {P_RF, P_RM, P_RB}, pros::E_MOTOR_GEARSET_06, false);
-    Motor Intake (P_INTAKE, E_MOTOR_GEARSET_06);
-    Motor Cata (P_CATA, E_MOTOR_GEARSET_36,1);
+    Motor intake (P_INTAKE, E_MOTOR_GEARSET_06);
+    Motor cata (P_CATA, E_MOTOR_GEARSET_36,1);
+
+    Piston intakeP(P_INTAKEP);
+    Piston wingP(P_WINGS);
+    Piston spikeP(P_SPIKE);
+    
     Imu imu(P_IMU);
-    Distance distance(P_DISTANCE);
     ADIDigitalIn cataLimit(P_CATASWITCH);
+
     Controller con(E_CONTROLLER_MASTER);
-    ADIDigitalOut wingPiston(P_WINGS);
+
 }
 #endif

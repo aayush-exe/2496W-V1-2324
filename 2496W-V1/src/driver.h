@@ -1,5 +1,5 @@
-#ifndef _DRIVER_
-#define _DRIVER_
+#ifndef __DRIVER__
+#define __DRIVER__
 
 #include "main.h"
 #include "global.h"
@@ -29,11 +29,11 @@ void drive()
 void intake()
 {
     if(con.get_digital(E_CONTROLLER_DIGITAL_R1)) 
-		Intake.move(127);
+		intake.move(127);
     else if(con.get_digital(E_CONTROLLER_DIGITAL_R2))
-        Intake.move(-127);
+        intake.move(-127);
     else 
-        Intake.move(0);
+        intake.move(0);
 }
 
 
@@ -52,18 +52,20 @@ void cata(int time)
 
     if (!cataCheck)
     {
-        Cata.move(-127);
+        cata.move(-127);
         cataPressed = false;
     }
     else if (cataPressed && cataCheck)
     {
         if (!prevCataCheck && cataCheck)
+        {
             Cata.move(0);
             delay(delay_launch ? 300 : 0);
-        Cata.move(-127);
+        }
+        cata.move(-127);
     }
     else 
-        Cata.move(0);
+        cata.move(0);
 
 
     if(time % 50 == 0 && time % 100 != 0 && time % 150 != 0)
@@ -73,37 +75,19 @@ void cata(int time)
     
 }
 
-void wings()
+void piston_cont()
 {
-    static bool PWingsButton;
-    static bool PWingsActive;
-    if(con.get_digital(E_CONTROLLER_DIGITAL_L2)) 
-    {
-			if(!PWingsButton) 
-            {
-				PWingsButton = true;
-				if(PWingsActive) 
-                {
-					PWingsActive = !PWingsActive;
-					wingPiston.set_value(false);
-				}
-				else 
-                {
-					PWingsActive = !PWingsActive;
-					wingPiston.set_value(true);
-				}
-			}
-		}
-    else PWingsButton = false;
-
-
+    if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_L2)) wingP.toggle();
+    if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_DOWN)) intakeP.toggle();
+    if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_B)) spikeP.toggle();
 }
 
-void print_info(int time)
+void print_info(int time, bool chassis_on)
 {
     // first line in cata func
     if(time % 100 == 0 && time % 150 != 0) 
-        con.print(1, 0, "Chassis Temp: %.1lf         ", chas.temp());
+        if (!chassis_on) con.print(0, 0, "%.1lf:%.1lf:%.1lf         ", chas.temp(), intake.get_temperature(), cata.get_temperature());
+        else con.print(0, 0, "CHAS OFF (right)     ");
     if(time % 150 == 0)
         con.print(2, 0, cataLimit.get_value() ? "On     " : "Off     ");
 }

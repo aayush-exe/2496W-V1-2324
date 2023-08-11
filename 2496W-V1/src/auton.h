@@ -1,5 +1,5 @@
-#ifndef _AUTON_
-#define _AUTON_
+#ifndef __AUTON__
+#define __AUTON__
 
 #include "main.h"
 #include "global.h"

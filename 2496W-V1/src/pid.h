@@ -1,5 +1,5 @@
-#ifndef _PID_
-#define _PID_
+#ifndef __PID__
+#define __PID__
 
 #include "main.h"
 #include "global.h"
