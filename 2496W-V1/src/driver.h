@@ -41,11 +41,11 @@ void cataCon(int time)
 {
     static bool cataPressed;
     bool cataCheck = cataLimit.get_value();
-    static bool prevCataCheck = cataCheck;
-    static bool delay_launch = false;
+    //static bool prevCataCheck = cataCheck;
+   // static bool delay_launch = false;
     
-    if (con.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_B))
-        delay_launch = !delay_launch;
+    // if (con.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_B))
+    //     delay_launch = !delay_launch;
 
     if (con.get_digital(pros::E_CONTROLLER_DIGITAL_L1))
         cataPressed = true;
@@ -57,21 +57,16 @@ void cataCon(int time)
     }
     else if (cataPressed && cataCheck)
     {
-        if (!prevCataCheck && cataCheck)
-        {
-            cata.move(0);
-            delay(delay_launch ? 300 : 0);
-        }
         cata.move(-127);
     }
     else 
         cata.move(0);
 
 
-    if(time % 50 == 0 && time % 100 != 0 && time % 150 != 0)
-        con.print(0, 0, delay_launch ? "MATCH LOAD     " : "FULL SPEED     ");
+    //if(time % 50 == 0 && time % 100 != 0 && time % 150 != 0)
+     //   con.print(0, 0, false ? "MATCH LOAD     " : "FULL SPEED     ");
     
-    prevCataCheck = cataCheck;
+    //prevCataCheck = cataCheck;
     
 }
 
