@@ -73,7 +73,10 @@ void cataCon(int time)
 void piston_cont()
 {
     if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_L2)) wingP.toggle();
-    if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_DOWN)) intakeP.toggle();
+    if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_DOWN)){
+        LintakeP.toggle();
+        RintakeP.toggle();
+    }
     if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_B)) spikeP.toggle();
 }
 
