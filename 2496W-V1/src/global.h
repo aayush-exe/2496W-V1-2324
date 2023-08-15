@@ -22,9 +22,9 @@ namespace glb
     #define P_CATA 15
     #define P_DISTANCE 3
     #define P_CATASWITCH 'A'
-    #define P_WINGS 'B'
-    #define P_LINTAKEP 'G'
-    #define P_RINTAKEP 'H'
+    #define P_INTAKEP 'C'
+    #define P_RWINGSP 'G'
+    #define P_LWINGSP 'H'
     #define P_SPIKE 'D'
    
     //objects
@@ -32,11 +32,12 @@ namespace glb
     Motor intake(P_INTAKE, E_MOTOR_GEARSET_06);
     Motor cata (P_CATA, E_MOTOR_GEARSET_36,1);
 
-    Piston LintakeP(P_LINTAKEP);
-    Piston RintakeP(P_RINTAKEP);
-    Piston wingP(P_WINGS);
+    Piston LwingsP(P_LWINGSP);
+    Piston RwingsP(P_RWINGSP);
+    Piston intakeP(P_INTAKEP);
     Piston spikeP(P_SPIKE);
 
+    Distance dist(P_DISTANCE);
     Imu imu(P_IMU);
     ADIDigitalIn cataLimit(P_CATASWITCH);
 

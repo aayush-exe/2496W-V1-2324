@@ -84,6 +84,7 @@ void opcontrol()
 	glb::con.clear();
 	long long time = 0;
 	bool chassis_on = true;
+	chas.set_brake();
 
 	while(true)
 	{
