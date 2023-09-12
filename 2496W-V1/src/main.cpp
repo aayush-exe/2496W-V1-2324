@@ -33,6 +33,7 @@ void opcontrol()
 	long long time = 0;
 	bool chassis_on = true;
 	chas.set_brake();
+	chas.reset();
 
 	while(true)
 	{

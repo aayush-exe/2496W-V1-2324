@@ -33,7 +33,7 @@ void drive()
 
 void intakeCon()
 {
-    if(con.get_digital(E_CONTROLLER_DIGITAL_R1) && !intakeCooldown) 
+    if(con.get_digital(E_CONTROLLER_DIGITAL_R1)) 
 		intake.move(127);
     else if(con.get_digital(E_CONTROLLER_DIGITAL_R2))
         intake.move(-127);
@@ -163,18 +163,18 @@ void print_info(int time, bool chassis_on)
         con.print(0, 0, !chassis_on ? "CHASSIS OFF (right)            " : "%.1lf | %.1lf | %.1lf       ", chas.temp(), intake.get_temperature(), cata.get_temperature());
     if(time % 100 == 0 && time % 150 != 0) 
         con.print(1, 0, "%.2f : %.2f", imu.get_heading(), chas.pos());
-  //  if(time % 150 == 0)
+  //if(time % 150 == 0)
         //con.print(2, 0, "auton: %s         ", (*auton).get_name());
 }
 
 void print_info_auton(int time, double error)
 {
-    if(time % 100 == 0) 
+    if(time % 50 == 0) 
         con.print(0, 0, "Error: %.2f         ", error);
-    if(time % 200 == 0 && time % 500 != 0 && time % 5000 != 0) 
+    if(time % 100 == 0 && time % 150 != 0) 
         con.print(1, 0, "%.2f : %.2f          ", imu.get_heading(), chas.pos());
-  //  if(time % 5000 == 0) 
-        //con.print(2, 0, "auton %s         ", (*auton).get_name());
+    if(time % 150 == 0 && time % 100 != 0 && time % 150 != 0) 
+        con.print(2, 0, "%.2f | %.0f       ", error, time);
 }
 
 #endif

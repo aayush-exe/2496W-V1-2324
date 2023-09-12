@@ -16,6 +16,11 @@ using namespace pros;
 using namespace std;
 using namespace glb;
 
+#define DRIVE_KP_H 0.2
+#define DRIVE_KI_H 0
+#define DRIVE_KD_H 0
+#define IMU_K_H 0
+
 namespace pid
 {
     double start_head = 0; 
@@ -24,11 +29,14 @@ namespace pid
     double end_head = 0;
     double global_heading = 0;
 
-    void drive(double target_dist, int timeout=5000, double mult=1.0, double max_speed=127, int exit_time=50)
+    void drive(double target_dist, int timeout=15000, double mult=1.0, double max_speed=127, int exit_time=50, double dou_kp = DRIVE_KP_H, double dou_ki = DRIVE_KI_H,double dou_kd = DRIVE_KD_H,double dou_imuk = IMU_K_H)
     {
-        #define DRIVE_KP 0.14
-        #define DRIVE_KI 0.0007 //0.01
-        #define DRIVE_KD 0.79 //5
+        #define DRIVE_KP 0.13 //0.14
+        #define DRIVE_KI 0.00046 //0.00085
+        #define DRIVE_KD 0 //5
+
+
+
         #define IMU_K 0.001
 
         if (fabs(end_head) - fabs(imu.get_heading()) > 1) {
@@ -77,7 +85,7 @@ namespace pid
             //Heading correction
             kintegral += heading_error;
 
-            double correction = kintegral * IMU_K;
+            double correction = (kintegral * IMU_K);
 
             //Cap speed and correction sum to max
             if (fabs(speed) + fabs(correction) > max_speed) 
@@ -88,7 +96,7 @@ namespace pid
             }
 
             //Exit Loop
-            if (fabs(error) < 2)
+            if (fabs(error) < 4)
             {
                 if(!exit)
                     exit = true;
@@ -99,14 +107,12 @@ namespace pid
             }
 
             //Keep sides moving the same distances
-            chas.spin_left(speed + correction * speed / 127.0);
-            chas.spin_right(speed - correction * speed / 127.0);
+            // chas.spin_left(speed + correction * speed / 127.0);
+            // chas.spin_right(speed - correction * speed / 127.0);
+            chas.spin(speed);
 
             //Logging
-            if(time % 50 == 0)
-            {
-                glb::con.print(0, 0, "Error: %.2f", error);
-            }
+            print_info_auton(time, error);
             
             //Prevent infinite loops
             pros::delay(1);
@@ -131,8 +137,8 @@ namespace pid
     void turn(double target_deg, int timeout=3000, double multi=1.0, double max_speed=127, int exit_time=100)
     {  
         bool absturn = false; // THIS IS TEMPORARY lol cus I made it a separate func. remove it later maybe
-        #define TURN_KP .8 //.7
-        #define TURN_KI 6
+        #define TURN_KP .7 //.7
+        #define TURN_KI 10
         #define TURN_KD 0.3 //.45
 
         int starting;
