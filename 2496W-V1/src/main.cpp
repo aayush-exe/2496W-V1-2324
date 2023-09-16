@@ -41,7 +41,7 @@ void opcontrol()
 		else chas.stop();
 
 		intakeCon();
-		cataCon(time);
+		cataConHalf(time);
 		piston_cont();
 		print_info(time, chassis_on);
 

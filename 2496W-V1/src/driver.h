@@ -110,6 +110,45 @@ void cataCon(int time)
     //prevCataCheck = cataCheck;
     
 }
+void cataConHalf(int time)
+{
+    static bool halfCata = false;
+    static bool cataPressed;
+    bool cataCheck = cataLimit.get_value();
+    double pos = abs(cata.get_position());
+    static int deadzone = 1500;
+
+    if (con.get_digital(pros::E_CONTROLLER_DIGITAL_L1))
+        cataPressed = true;
+
+    if (!cataCheck)
+    { 
+        if (halfCata && (deadzone < pos && pos < 1590) && cataPressed == false)
+        {
+            cata.move(0);
+            deadzone = 1400;
+        }
+        else 
+        {
+            deadzone = 1500;
+            cata.move(-127);
+            cataPressed = false;
+        }
+    }
+    else if (cataPressed && cataCheck)
+        cata.move(-127);
+    else 
+    {
+        cata.move(0);
+        cata.tare_position();
+    }
+
+    if (con.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_B))
+        halfCata = !halfCata;
+    if (halfCata && (time%2000 == 0))
+        con.rumble(".");
+
+}
 Auton auton_selector(std::vector<Auton> autons)
 {
     short int selected = 0;
@@ -162,18 +201,18 @@ void print_info(int time, bool chassis_on)
     if(time % 50 == 0 && time % 100 != 0 && time % 150 != 0)
         con.print(0, 0, !chassis_on ? "CHASSIS OFF (right)            " : "%.1lf | %.1lf | %.1lf       ", chas.temp(), intake.get_temperature(), cata.get_temperature());
     if(time % 100 == 0 && time % 150 != 0) 
-        con.print(1, 0, "%.2f : %.2f", imu.get_heading(), chas.pos());
+        con.print(1, 0, "%.2f : %.2f", imu.get_heading(), (cata.get_position()));
   //if(time % 150 == 0)
         //con.print(2, 0, "auton: %s         ", (*auton).get_name());
 }
 
 void print_info_auton(int time, double error)
 {
-    if(time % 50 == 0) 
+    if(time % 50 == 0 && time%2000 != 0) 
         con.print(0, 0, "Error: %.2f         ", error);
-    if(time % 100 == 0 && time % 150 != 0) 
+    if(time % 100 == 0 && time % 150 != 0 && time%2000 != 0) 
         con.print(1, 0, "%.2f : %.2f          ", imu.get_heading(), chas.pos());
-    if(time % 150 == 0 && time % 100 != 0 && time % 150 != 0) 
+    if(time % 150 == 0 && time % 100 != 0 && time % 150 != 0 && time%2000 != 0) 
         con.print(2, 0, "%.2f | %.0f       ", error, time);
 }
 
