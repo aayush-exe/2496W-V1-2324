@@ -17,6 +17,7 @@ using namespace std;
 using namespace glb;
 
 #define DRIVE_KP_H 0.2
+
 #define DRIVE_KI_H 0
 #define DRIVE_KD_H 0
 #define IMU_K_H 0
@@ -29,12 +30,15 @@ namespace pid
     double end_head = 0;
     double global_heading = 0;
 
-    void drive(double target_dist, int timeout=15000, double mult=1.0, double max_speed=127, int exit_time=50, double dou_kp = DRIVE_KP_H, double dou_ki = DRIVE_KI_H,double dou_kd = DRIVE_KD_H,double dou_imuk = IMU_K_H)
+    void drive(double target_dist, int timeout=3000, double mult=1.0, double max_speed=127, int exit_time=50, double dou_kp = DRIVE_KP_H, double dou_ki = DRIVE_KI_H,double dou_kd = DRIVE_KD_H,double dou_imuk = IMU_K_H)
     {
-        #define DRIVE_KP 0.13 //0.14
-        #define DRIVE_KI 0.00046 //0.00085
-        #define DRIVE_KD 0 //5
+        #define DRIVE_KP 0.206 //0.14
+        //500: 0.1777
+        //1000: 0.1685
+        //2000: 0.1429
 
+        #define DRIVE_KI 0//0.002 //0.00085
+        #define DRIVE_KD 0 //5
 
 
         #define IMU_K 0.001
@@ -96,15 +100,15 @@ namespace pid
             }
 
             //Exit Loop
-            if (fabs(error) < 4)
-            {
-                if(!exit)
-                    exit = true;
-                else
-                    error_range_time++;
-                if (exit_time <= error_range_time)
-                    break;
-            }
+            // if (fabs(error) < 4)
+            // {
+            //     if(!exit)
+            //         exit = true;
+            //     else
+            //         error_range_time++;
+            //     if (exit_time <= error_range_time)
+            //         break;
+            // }
 
             //Keep sides moving the same distances
             // chas.spin_left(speed + correction * speed / 127.0);

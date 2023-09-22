@@ -20,7 +20,7 @@ using namespace pid;
 
 void test()
 {
-    drive(1000);
+    drive(100);
     // delay(500);
     // turn(90);
 }
