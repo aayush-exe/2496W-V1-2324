@@ -14,7 +14,17 @@
 
 using namespace pros;
 using namespace std;
+using namespace glb;
 
+void cataAuton(int triballs)
+{
+    int count = 0;
+    while (count<triballs)
+    {
+    cata.move(-127);
+    bool cataCheck = cataLimit.get_value();
 
+    }
+}
 
 #endif
