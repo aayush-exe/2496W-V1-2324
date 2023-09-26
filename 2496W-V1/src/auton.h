@@ -25,6 +25,10 @@ void test()
     // turn(90);
 }
 void blank(){}
+
+void cat1(){
+    cata.move(-127);
+}
 void test_mode()
 {
     long long timer = 0;
@@ -64,6 +68,7 @@ std::vector<Auton> autons
 {
     Auton("test", test),
     Auton("NO AUTON", blank),
+    Auton("CATA GO BRR", cat1)
     //Auton("Auton test mode", test_mode),
 };
 
