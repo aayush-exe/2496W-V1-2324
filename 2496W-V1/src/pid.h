@@ -11,6 +11,7 @@
 #include <iostream>
 #include <fstream>
 #include <list>
+#include <cmath>
 
 using namespace pros;
 using namespace std;
@@ -32,7 +33,7 @@ namespace pid
 
     void drive(double target_dist, int timeout=3000, double mult=1.0, double max_speed=127, int exit_time=50, double dou_kp = DRIVE_KP_H, double dou_ki = DRIVE_KI_H,double dou_kd = DRIVE_KD_H,double dou_imuk = IMU_K_H)
     {
-        #define DRIVE_KP 0.206 //0.14
+        #define DRIVE_KP ((17.6647 * (pow(target_dist, -0.975028))) + 0.139685) //0.14
         //500: 0.1777
         //1000: 0.1685
         //2000: 0.1429

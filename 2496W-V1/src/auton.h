@@ -14,20 +14,23 @@
 #include <list>
 #include <iostream>
 
+
 using namespace pros;
 using namespace std;
 using namespace pid;
 
 void test()
 {
-    drive(100);
+    drive(1723);
     // delay(500);
     // turn(90);
 }
 void blank(){}
 
 void cat1(){
+    while(cata.get_temperature() <= 52.5){
     cata.move(-127);
+    }
 }
 void test_mode()
 {
