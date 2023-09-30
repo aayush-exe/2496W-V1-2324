@@ -21,9 +21,7 @@ using namespace pid;
 
 void test()
 {
-    drive(1723);
-    // delay(500);
-    // turn(90);
+    drive(1230);
 }
 void blank(){}
 
