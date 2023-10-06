@@ -34,9 +34,9 @@ void drive()
 void intakeCon()
 {
     if(con.get_digital(E_CONTROLLER_DIGITAL_R1)) 
-		intake.move(127);
+		intake.move(-127);
     else if(con.get_digital(E_CONTROLLER_DIGITAL_R2))
-        intake.move(-127);
+        intake.move(127);
     else 
         intake.move(0);
 }
