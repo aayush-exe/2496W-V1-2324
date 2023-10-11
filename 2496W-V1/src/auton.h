@@ -21,7 +21,8 @@ using namespace pid;
 
 void test()
 {
-    drive(1230);
+
+    turn(-90);
 }
 void blank(){}
 

@@ -142,7 +142,7 @@ namespace pid
     void turn(double target_deg, int timeout=3000, double multi=1.0, double max_speed=127, int exit_time=100)
     {  
     
-        #define TURN_KP 0.779 //.7
+        #define TURN_KP 0.99 //.7
         #define TURN_KI 0 //10
         #define TURN_KD 0 //0.3 //.45
 
