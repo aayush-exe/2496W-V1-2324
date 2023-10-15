@@ -19,7 +19,7 @@ void drive()
     double right = abs(con.get_analog(E_CONTROLLER_ANALOG_RIGHT_X)) > 10 ? con.get_analog(E_CONTROLLER_ANALOG_RIGHT_X) : 0;
     
     //right = ((127.0 / pow(127, TURN_K)) * pow(abs(right), TURN_K) * (right/127));
-    right /= 1.2;
+    right /= 1.225;
 
     if(left || right)
     {
@@ -100,7 +100,7 @@ void cataCon(int time)
     else if (cataPressed && cataCheck)
     {
         cata.move(-127);
-    }
+    }   
     else 
         cata.move(0);
 
