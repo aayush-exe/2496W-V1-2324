@@ -33,7 +33,7 @@ namespace pid
 
     void drive(double target_dist, int timeout=3000, double mult=1.0, double max_speed=127, int exit_time=100, double dou_kp = DRIVE_KP_H, double dou_ki = DRIVE_KI_H,double dou_kd = DRIVE_KD_H,double dou_imuk = IMU_K_H)
     {
-        #define DRIVE_KP ((17.6647 * (pow(abs(target_dist), -0.975028))) + 0.139685) //0.14
+        #define DRIVE_KP ((17.6647 * (pow(abs(target_dist > 1 ? target_dist : 1), -0.975028))) + 0.139685) //0.14
         //500: 0.1777
         //1000: 0.1685
         //2000: 0.1429
@@ -141,10 +141,12 @@ namespace pid
 
     void turn(double target_deg, int timeout=3000, double multi=1.0, double max_speed=127, int exit_time=100)
     {  
+        double temprer = ((32.7676 * (pow(abs(target_deg > 1 ? target_deg : 1), -1.07131))) + 0.719255);
+
     
-        #define TURN_KP 0.99 //.7
-        #define TURN_KI 0 //10
-        #define TURN_KD 0 //0.3 //.45
+        #define TURN_KP temprer//.7
+        #define TURN_KI 15 //10
+        #define TURN_KD 0.4 //0.3 //.45
 
         int starting;
 
@@ -176,13 +178,15 @@ namespace pid
         int time = 0;
         while (time<timeout)
         {
+            temprer = ((32.7676 * (pow(abs(error > 1 ? error : 1), -1.07131))) + 0.719255);
+            
             prev_error = error;
             error = target - imu.get_heading();
             if(fabs(error) < 1.5)
                 integral += error / 1000;
             derivative = (error - prev_error) * 1000;
 
-            double speed = error * TURN_KP + integral * TURN_KI + derivative * TURN_KD;
+            double speed = error * temprer + integral * TURN_KI + derivative * TURN_KD;
 
             if (fabs(speed) > max_speed) 
             {
