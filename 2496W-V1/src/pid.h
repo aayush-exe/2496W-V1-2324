@@ -33,7 +33,7 @@ namespace pid
 
     void drive(double target_dist, int timeout=3000, double mult=1.0, double max_speed=127, int exit_time=100, double dou_kp = DRIVE_KP_H, double dou_ki = DRIVE_KI_H,double dou_kd = DRIVE_KD_H,double dou_imuk = IMU_K_H)
     {
-        #define DRIVE_KP ((17.6647 * (pow(abs(target_dist > 1 ? target_dist : 1), -0.975028))) + 0.139685) //0.14
+        #define DRIVE_KP ((17.6647 * (pow(abs(target_dist), -0.975028))) + 0.139685) //0.14
         //500: 0.1777
         //1000: 0.1685
         //2000: 0.1429
@@ -117,7 +117,7 @@ namespace pid
             chas.spin(speed);
 
             //Logging
-            print_info_auton(time, error);
+            print_info_auton(time, error, speed);
             
             //Prevent infinite loops
             pros::delay(1);
@@ -141,41 +141,22 @@ namespace pid
 
     void turn(double target_deg, int timeout=3000, double multi=1.0, double max_speed=127, int exit_time=100)
     {  
-        bool absturn = false; // THIS IS TEMPORARY lol cus I made it a separate func. remove it later maybe
-        #define TURN_KP .7 //.7
-        #define TURN_KI 0
-        #define TURN_KD 0//.45
     
+        #define TURN_KP ((32.7676 * (pow(abs(abs(target_deg) > 1 ? target_deg : 1), -1.07131))) + 0.719255) //.7
+        #define TURN_KI 0 //10
+        #define TURN_KD 0 //0.3 //.45
 
         int starting;
 
         if (fabs(end_head) - fabs(imu.get_heading()) > 1) {
             start_head += end_head-imu.get_heading();
         }
-
-
-        if (absturn) {
-            if (target_deg>150) {
-                starting=30;
-            }
-            else if (target_deg<-150) {
-                starting=330;
-            }
-            else {
-                starting=180;
-            }
-            target_deg -= start_head;
-        }
-
-        else {
-            if (target_deg > 150)
-                starting = 30;
-            else if (target_deg < -150)
-                starting = 330;
-            else
-                starting = 180;
-        }
-
+        if (target_deg > 150)
+            starting = 30;
+        else if (target_deg < -150)
+            starting = 330;
+        else
+            starting = 180;
         
         imu.set_heading(starting);
         
@@ -194,7 +175,7 @@ namespace pid
         {
             prev_error = error;
             error = target - imu.get_heading();
-            if(fabs(error) < 1.5)
+            if(fabs(error) < 3)
                 integral += error / 1000;
             derivative = (error - prev_error) * 1000;
 
@@ -206,7 +187,6 @@ namespace pid
                 speed *= multiplier;
             }
 
-            if (fabs(error) < 0.15)
             if (fabs(error) < 0) // 0.15
             {
                 if(!exit)
@@ -217,10 +197,13 @@ namespace pid
                     break;
             }
 
-            chas.spin_left(-speed * multi);
-            chas.spin_right(speed * multi);
+            // if (target_deg > 0 &&(-6<speed && speed<0.5)) speed *= 3;
+            // if (target_deg < 0 && (0.5<speed && speed<6)) speed *= 3;
 
-            print_info_auton(time, error);
+            chas.spin_left(speed);
+            chas.spin_right(-speed);
+
+            print_info_auton(time, error, speed);
 
             pros::delay(1);
             time++;
@@ -229,13 +212,6 @@ namespace pid
 
         double diff = imu.get_heading() - starting;
         
-        if (absturn) {
-            start_head = imu.get_heading() - 180;
-        }
-
-        else {
-            start_head+=diff;
-        }
         start_head+=diff;
         
         end_head = imu.get_heading();

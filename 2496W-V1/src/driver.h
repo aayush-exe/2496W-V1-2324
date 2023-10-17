@@ -209,10 +209,10 @@ void print_info(int time, bool chassis_on)
         //con.print(2, 0, "auton: %s         ", (*auton).get_name());
 }
 
-void print_info_auton(int time, double error)
+void print_info_auton(int time, double error, double speed)
 {
     if(time % 50 == 0 && time%2000 != 0) 
-        con.print(0, 0, "Error: %.2f         ", error);
+        con.print(0, 0, "Error: %.2f : %.2f    ", error, speed);
     if(time % 100 == 0 && time % 150 != 0 && time%2000 != 0) 
         con.print(1, 0, "%.2f : %.2f          ", imu.get_heading(), chas.pos());
     if(time % 150 == 0 && time % 100 != 0 && time % 150 != 0 && time%2000 != 0) 
