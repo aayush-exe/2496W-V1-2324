@@ -141,12 +141,11 @@ namespace pid
 
     void turn(double target_deg, int timeout=3000, double multi=1.0, double max_speed=127, int exit_time=100)
     {  
-        double temprer = ((32.7676 * (pow(abs(target_deg > 1 ? target_deg : 1), -1.07131))) + 0.719255);
-
+        bool absturn = false; // THIS IS TEMPORARY lol cus I made it a separate func. remove it later maybe
+        #define TURN_KP .7 //.7
+        #define TURN_KI 0
+        #define TURN_KD 0//.45
     
-        #define TURN_KP temprer//.7
-        #define TURN_KI 15 //10
-        #define TURN_KD 0.4 //0.3 //.45
 
         int starting;
 
@@ -155,12 +154,27 @@ namespace pid
         }
 
 
+        if (absturn) {
+            if (target_deg>150) {
+                starting=30;
+            }
+            else if (target_deg<-150) {
+                starting=330;
+            }
+            else {
+                starting=180;
+            }
+            target_deg -= start_head;
+        }
+
+        else {
             if (target_deg > 150)
                 starting = 30;
             else if (target_deg < -150)
                 starting = 330;
             else
                 starting = 180;
+        }
 
         
         imu.set_heading(starting);
@@ -178,15 +192,13 @@ namespace pid
         int time = 0;
         while (time<timeout)
         {
-            temprer = ((32.7676 * (pow(abs(error > 1 ? error : 1), -1.07131))) + 0.719255);
-            
             prev_error = error;
             error = target - imu.get_heading();
             if(fabs(error) < 1.5)
                 integral += error / 1000;
             derivative = (error - prev_error) * 1000;
 
-            double speed = error * temprer + integral * TURN_KI + derivative * TURN_KD;
+            double speed = error * TURN_KP + integral * TURN_KI + derivative * TURN_KD;
 
             if (fabs(speed) > max_speed) 
             {
@@ -194,6 +206,7 @@ namespace pid
                 speed *= multiplier;
             }
 
+            if (fabs(error) < 0.15)
             if (fabs(error) < 0) // 0.15
             {
                 if(!exit)
@@ -204,8 +217,8 @@ namespace pid
                     break;
             }
 
-            chas.spin_left(speed * multi);
-            chas.spin_right(-speed * multi);
+            chas.spin_left(-speed * multi);
+            chas.spin_right(speed * multi);
 
             print_info_auton(time, error);
 
@@ -216,6 +229,13 @@ namespace pid
 
         double diff = imu.get_heading() - starting;
         
+        if (absturn) {
+            start_head = imu.get_heading() - 180;
+        }
+
+        else {
+            start_head+=diff;
+        }
         start_head+=diff;
         
         end_head = imu.get_heading();
