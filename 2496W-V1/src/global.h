@@ -25,7 +25,8 @@ namespace glb
     #define P_INTAKEP 'C'
     #define P_RWINGSP 'G'
     #define P_LWINGSP 'H'
-    #define P_SPIKE 'D'
+    #define P_LHANG 'D'
+    #define P_RHANG 'E'
    
     //objects
     Chassis chas({P_LF, P_LM, P_LB}, {P_RF, P_RM, P_RB}, pros::E_MOTOR_GEARSET_06, false);
@@ -35,7 +36,8 @@ namespace glb
     Piston LwingsP(P_LWINGSP);
     Piston RwingsP(P_RWINGSP);
     Piston intakeP(P_INTAKEP);
-    Piston spikeP(P_SPIKE);
+    Piston LhangP(P_LHANG);
+    Piston RhangP(P_RHANG);
 
     Distance dist(P_DISTANCE);
     Imu imu(P_IMU);

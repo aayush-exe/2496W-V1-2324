@@ -192,7 +192,10 @@ void piston_cont()
         LwingsP.toggle();
         RwingsP.toggle();
     }
-    if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_B)) spikeP.toggle();
+    if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_X)){
+        RhangP.toggle();
+        LhangP.toggle();
+    } 
 }
 
 void print_info(int time, bool chassis_on)
