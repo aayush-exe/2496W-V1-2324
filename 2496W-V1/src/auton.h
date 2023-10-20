@@ -22,7 +22,7 @@ using namespace pid;
 void test()
 {
 
-    turn(180);
+    turn(90);
 }
 void blank(){}
 
