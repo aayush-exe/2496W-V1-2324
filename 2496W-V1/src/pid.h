@@ -142,9 +142,9 @@ namespace pid
     void turn(double target_deg, int timeout=3000, double multi=1.0, double max_speed=127, int exit_time=100)
     {  
     
-        #define TURN_KP 3//((32.7676 * (pow(fabs(fabs(target_deg) > 1 ? target_deg : 1), -1.07131))) + 0.719255) //.7
-        #define TURN_KI 0 //10
-        #define TURN_KD .214  //0.3 //.45
+        #define TURN_KP 2.945//((32.7676 * (pow(fabs(fabs(target_deg) > 1 ? target_deg : 1), -1.07131))) + 0.719255) //.7
+        #define TURN_KI 0.1 //10
+        #define TURN_KD .21  //0.3 //.45
 
         //180: 0.9, 0, 0.2
 
