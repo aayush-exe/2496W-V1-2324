@@ -141,12 +141,48 @@ namespace pid
 
     void turn(double target_deg, int timeout=3000, double multi=1.0, double max_speed=127, int exit_time=100)
     {  
-    
-        #define TURN_KP 2.945//((32.7676 * (pow(fabs(fabs(target_deg) > 1 ? target_deg : 1), -1.07131))) + 0.719255) //.7
-        #define TURN_KI 0.1 //10
-        #define TURN_KD .21  //0.3 //.45
+        //180
+        //#define TURN_KP 0.9//((32.7676 * (pow(fabs(fabs(target_deg) > 1 ? target_deg : 1), -1.07131))) + 0.719255) //.7
+        //define TURN_KI 0 //10
+        //#define TURN_KD 0.2 //0.3 //.45
+        
+        
+        if (target_deg < 135)
+        {        
+            #define TURN_KP 3.219
+            #define TURN_KI 0.255
+            #define TURN_KD 0.199
+        }
+        else{
+            //180 vals here -- need to tune
+            #define TURN_KP 3.228
+            #define TURN_KI 0.25
+            #define TURN_KD 0.2
+        }
+        
+        
 
-        //180: 0.9, 0, 0.2
+
+        // 3.215, 0.2555, 0.214, integral < 2.65
+
+
+
+        // old: 180: 0.9, 0, 0.2
+        //0.15,-0.1, -1.72, 1.53, -0.02, -0.14, -0.54, -0.39, 0.08, 0.04, -1.69
+
+        //90: 3.15, 0, .218
+        
+        //3.2, 0, .215
+        /*
+        errors:
+        //0.4, -1.06, 0.45, -0.51, 1.2, -0.93
+        -0.41, 1.53, -0.09, 1.07, -0.9, 0.81, -0.09, 0.83
+        */
+
+       // 3.21, 0.1, .215
+
+
+
 
         double max_error = 6;
 
@@ -177,17 +213,17 @@ namespace pid
         int time = 0;
         while (time<timeout)
         {
-
+            double speed;
             prev_error = error;
             error = target - imu.get_heading();
-            if(abs(error) < 5){
+            if(abs(error) < 2.9){
                 integral += error / 100;
             }
             derivative = (error - prev_error) * 100;
 
-            if (derivative)
-
-            double speed = error * TURN_KP + integral * TURN_KI + derivative * TURN_KD;
+            if (derivative){
+                speed = error * TURN_KP + integral * TURN_KI + derivative * TURN_KD;
+            }
 
             if (fabs(speed) > max_speed) 
             {
