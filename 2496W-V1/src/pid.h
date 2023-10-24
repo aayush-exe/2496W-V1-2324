@@ -149,9 +149,9 @@ namespace pid
         
         if (target_deg < 135)
         {        
-            #define TURN_KP 3.219
-            #define TURN_KI 0.255
-            #define TURN_KD 0.199
+            #define TURN_KP 2.38
+            #define TURN_KI 0
+            #define TURN_KD 0.4
         }
         else{
             //180 vals here -- need to tune
@@ -216,7 +216,7 @@ namespace pid
             double speed;
             prev_error = error;
             error = target - imu.get_heading();
-            if(abs(error) < 2.9){
+            if(abs(error) < 2.5){
                 integral += error / 100;
             }
             derivative = (error - prev_error) * 100;
