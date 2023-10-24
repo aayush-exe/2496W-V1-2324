@@ -145,20 +145,55 @@ namespace pid
         //#define TURN_KP 0.9//((32.7676 * (pow(fabs(fabs(target_deg) > 1 ? target_deg : 1), -1.07131))) + 0.719255) //.7
         //define TURN_KI 0 //10
         //#define TURN_KD 0.2 //0.3 //.45
+        double TURN_KP;
+        double TURN_KI;
+        double TURN_KD;
+        //90 degree
+
+        if (target_deg < 120)
+        {
+            TURN_KP = 3.55;
+            TURN_KI = 0.04;
+            TURN_KD = 0.26;
+        }
+        else{
+            TURN_KP = 3.299;
+            TURN_KI = 0.09;
+            TURN_KD = 0.3;
+        }
+
+        //180
+        /*TURN_KP = 3.299;
+            TURN_KI = 0.09;
+            TURN_KD = 0.32;*/
+        //older
+        /*double TURN_KP = 3.275;
+        double TURN_KI = 0;
+        double TURN_KD = 0.224;*/
+
+        //better
+        /*double TURN_KP = 3.275;
+        double TURN_KI = 0.008;
+        double TURN_KD = 0.224;*/
+        /*
+
+        //more better
+        double TURN_KP = 3.275;
+        double TURN_KI = 0.01;
+        double TURN_KD = 0.224;*/
         
-        
-        if (target_deg < 135)
+        /*if (target_deg < 135)
         {        
-            #define TURN_KP 2.38
+            #define TURN_KP 2.2
             #define TURN_KI 0
-            #define TURN_KD 0.4
+            #define TURN_KD 1
         }
         else{
             //180 vals here -- need to tune
             #define TURN_KP 3.228
             #define TURN_KI 0.25
             #define TURN_KD 0.2
-        }
+        }*/
         
         
 
@@ -216,8 +251,16 @@ namespace pid
             double speed;
             prev_error = error;
             error = target - imu.get_heading();
-            if(abs(error) < 2.5){
-                integral += error / 100;
+            
+            if (target_deg < 120){
+                if(abs(error) < 2){
+                    integral += error / 100;
+                }
+            }
+            else{
+                if(abs(error) < 3){
+                    integral += error / 100;
+                }
             }
             derivative = (error - prev_error) * 100;
 
