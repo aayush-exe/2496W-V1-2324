@@ -143,89 +143,22 @@ namespace pid
     {  
 
         target_deg = fabs(target_deg)<=180 ? target_deg : (target_deg<0 ? target_deg + 180 : target_deg - 180);
-        //180
-
-        // good work out there rohan ur like that ur that guy ur the rizzler keep it up
-
-        // thanks aayush, you too :pray:
-
-
-        //#define TURN_KP 0.9//((32.7676 * (pow(fabs(fabs(target_deg) > 1 ? target_deg : 1), -1.07131))) + 0.719255) //.7
-        //define TURN_KI 0 //10
-        //#define TURN_KD 0.2 //0.3 //.45
+        
         double TURN_KP;
         double TURN_KI;
         double TURN_KD;
-        //90 degree
-
-        if (target_deg < 120)
+        
+        if (target_deg < 120) //90 degree
         {
             TURN_KP = 4.15;
             TURN_KI = 0.04;
             TURN_KD = 0.26;
         }
-        else{
+        else{ //tuned to 180 degree
             TURN_KP = 4.03;
             TURN_KI = 0.09;
             TURN_KD = 0.3;
         }
-
-        //180
-        /*TURN_KP = 3.299;
-            TURN_KI = 0.09;
-            TURN_KD = 0.32;*/
-        //older
-        /*double TURN_KP = 3.275;
-        double TURN_KI = 0;
-        double TURN_KD = 0.224;*/
-
-        //better
-        /*double TURN_KP = 3.275;
-        double TURN_KI = 0.008;
-        double TURN_KD = 0.224;*/
-        /*
-
-        //more better
-        double TURN_KP = 3.275;
-        double TURN_KI = 0.01;
-        double TURN_KD = 0.224;*/
-        
-        /*if (target_deg < 135)
-        {        
-            #define TURN_KP 2.2
-            #define TURN_KI 0
-            #define TURN_KD 1
-        }
-        else{
-            //180 vals here -- need to tune
-            #define TURN_KP 3.228
-            #define TURN_KI 0.25
-            #define TURN_KD 0.2
-        }*/
-        
-        
-
-
-        // 3.215, 0.2555, 0.214, integral < 2.65
-
-
-
-        // old: 180: 0.9, 0, 0.2
-        //0.15,-0.1, -1.72, 1.53, -0.02, -0.14, -0.54, -0.39, 0.08, 0.04, -1.69
-
-        //90: 3.15, 0, .218
-        
-        //3.2, 0, .215
-        /*
-        errors:
-        //0.4, -1.06, 0.45, -0.51, 1.2, -0.93
-        -0.41, 1.53, -0.09, 1.07, -0.9, 0.81, -0.09, 0.83
-        */
-
-       // 3.21, 0.1, .215
-
-
-
 
         double max_error = 6;
 
@@ -242,7 +175,6 @@ namespace pid
             starting = 180;
         
         imu.set_heading(starting);
-        
 
         double target = target_deg + imu.get_heading();
         double error = target_deg;
@@ -322,5 +254,69 @@ namespace pid
     }
 }
 
+//180
+
+// good work out there rohan ur like that ur that guy ur the rizzler keep it up
+// thanks aayush, you too :pray:
+
+//#define TURN_KP 0.9//((32.7676 * (pow(fabs(fabs(target_deg) > 1 ? target_deg : 1), -1.07131))) + 0.719255) //.7
+//define TURN_KI 0 //10
+//#define TURN_KD 0.2 //0.3 //.45
+
+//180
+/*
+TURN_KP = 3.299;
+TURN_KI = 0.09;
+TURN_KD = 0.32;
+*/
+
+
+//older
+/*double TURN_KP = 3.275;
+double TURN_KI = 0;
+double TURN_KD = 0.224;*/
+
+//better
+/*double TURN_KP = 3.275;
+double TURN_KI = 0.008;
+double TURN_KD = 0.224;*/
+/*
+
+//more better
+double TURN_KP = 3.275;
+double TURN_KI = 0.01;
+double TURN_KD = 0.224;*/
+
+/*if (target_deg < 135)
+{        
+    #define TURN_KP 2.2
+    #define TURN_KI 0
+    #define TURN_KD 1
+}
+else{
+    //180 vals here -- need to tune
+    #define TURN_KP 3.228
+    #define TURN_KI 0.25
+    #define TURN_KD 0.2
+}*/
+
+// 3.215, 0.2555, 0.214, integral < 2.65
+
+// old: 180: 0.9, 0, 0.2
+//0.15,-0.1, -1.72, 1.53, -0.02, -0.14, -0.54, -0.39, 0.08, 0.04, -1.69
+
+//90: 3.15, 0, .218
+
+//3.2, 0, .215
+
+/*
+errors:
+//0.4, -1.06, 0.45, -0.51, 1.2, -0.93
+-0.41, 1.53, -0.09, 1.07, -0.9, 0.81, -0.09, 0.83
+*/
+
+// 3.21, 0.1, .215
 
 #endif
+
+

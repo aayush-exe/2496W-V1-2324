@@ -19,6 +19,20 @@ using namespace pros;
 using namespace std;
 using namespace pid;
 
+void defensive_left(){}
+
+
+void offensive_right(){}
+
+
+void skills(){
+    matchload(47);
+}
+
+
+void blank(){}
+
+
 void test()
 {
     drive(1230);
@@ -28,13 +42,8 @@ void test()
     drive(1230);
     //turn(180);
 }
-void blank(){}
 
-void cat1(){
-    while(cata.get_temperature() <= 52.5){
-    cata.move(-127);
-    }
-}
+
 void test_mode()
 {
     long long timer = 0;
@@ -72,10 +81,11 @@ void test_mode()
 
 std::vector<Auton> autons
 {
-    Auton("test", test),
+    Auton("LEFT", defensive_left),
+    Auton("RIGHT", offensive_right),
+    Auton("SKILLS", skills),
     Auton("NO AUTON", blank),
-    Auton("CATA GO BRR", cat1)
-    //Auton("Auton test mode", test_mode),
+    Auton("test", test)
 };
 
 #endif

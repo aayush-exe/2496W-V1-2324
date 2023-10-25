@@ -16,15 +16,25 @@ using namespace pros;
 using namespace std;
 using namespace glb;
 
-void cataAuton(int triballs)
+void matchload(int triballs)
 {
     int count = 0;
-    while (count<triballs)
+    bool cataCheck;
+    while (count <= triballs)
     {
-    cata.move(-127);
-    bool cataCheck = cataLimit.get_value();
+        cata.move(-127);
+        cataCheck = cataLimit.get_value();
+        if (cataCheck == true){
+            count += 1;
+            cataCheck = false;
+        }
 
     }
+    while (!cataCheck){
+        cataCheck = cataLimit.get_value();
+        cata.move(-127);
+    }
+    cata.move(0);
 }
 
 #endif
