@@ -152,12 +152,12 @@ namespace pid
 
         if (target_deg < 120)
         {
-            TURN_KP = 3.55;
+            TURN_KP = 4.15;
             TURN_KI = 0.04;
             TURN_KD = 0.26;
         }
         else{
-            TURN_KP = 3.299;
+            TURN_KP = 4.03;
             TURN_KI = 0.09;
             TURN_KD = 0.3;
         }
