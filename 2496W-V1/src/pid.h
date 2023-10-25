@@ -146,6 +146,10 @@ namespace pid
         //180
 
         // good work out there rohan ur like that ur that guy ur the rizzler keep it up
+
+        // thanks aayush, you too :pray:
+
+
         //#define TURN_KP 0.9//((32.7676 * (pow(fabs(fabs(target_deg) > 1 ? target_deg : 1), -1.07131))) + 0.719255) //.7
         //define TURN_KI 0 //10
         //#define TURN_KD 0.2 //0.3 //.45
