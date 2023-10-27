@@ -19,10 +19,55 @@ using namespace pros;
 using namespace std;
 using namespace pid;
 
-void defensive_left(){}
+void defensive_left(){
+
+    drive(1100);
+    turn(45);
+    intake.move(127);
+    drive(350);
+    drive(-200);
+    turn(-25);
+    drive(300);
+    turn(25);
+    drive(-350);
+    chas.spin_left(-127);
+    delay(150);
+    chas.spin_left(0);
+    intakeP.set(true);
+    drive(-900);
+    turn(-35);
+    intakeP.set(false);
+    drive(-450);
+    turn(-15);
+    drive(-1665);
+    
+    
+    
+
+}
 
 
-void offensive_right(){}
+void offensive_right(){
+    intakeP.set(true);
+    drive(-600);
+    chas.spin_left(-127);
+    delay(230);
+    chas.spin_left(0);
+    turn(-30);
+    drive(-900);
+    drive(300);
+    chas.spin_left(127);
+    delay(375);
+    chas.spin_right(0);
+    delay(50);
+    drive(2400);
+    turn(-75);
+    RwingsP.set(true);
+    LwingsP.set(true);
+    turn(25);
+    drive(-900);
+    
+}
 
 
 void skills(){

@@ -31,7 +31,7 @@ namespace pid
     double end_head = 0;
     double global_heading = 0;
 
-    void drive(double target_dist, int timeout=3000, double mult=1.0, double max_speed=127, int exit_time=100, double dou_kp = DRIVE_KP_H, double dou_ki = DRIVE_KI_H,double dou_kd = DRIVE_KD_H,double dou_imuk = IMU_K_H)
+    void drive(double target_dist, int timeout=1500, double mult=1.0, double max_speed=127, int exit_time=100, double dou_kp = DRIVE_KP_H, double dou_ki = DRIVE_KI_H,double dou_kd = DRIVE_KD_H,double dou_imuk = IMU_K_H)
     {
         #define DRIVE_KP ((17.6647 * (pow(fabs(target_dist), -0.975028))) + 0.139685) //0.14
         //500: 0.1777
@@ -139,7 +139,7 @@ namespace pid
         return error / fabs(error) * (25 * log(0.25 * (fabs(error) + 4)) + 5);
     }
 
-    void turn(double target_deg, int timeout=3000, double multi=1.0, double max_speed=127, int exit_time=100)
+    void turn(double target_deg, int timeout=1000, double multi=1.0, double max_speed=127, int exit_time=100)
     {  
 
         target_deg = fabs(target_deg)<=180 ? target_deg : (target_deg<0 ? target_deg + 180 : target_deg - 180);
