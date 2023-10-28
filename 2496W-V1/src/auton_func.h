@@ -26,7 +26,8 @@ void matchload(int triballs)
         cataCheck = cataLimit.get_value();
         if (cataCheck == true){
             count += 1;
-            cataCheck = false;
+            delay(300);
+            
         }
 
     }

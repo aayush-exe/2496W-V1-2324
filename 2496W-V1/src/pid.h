@@ -252,6 +252,114 @@ namespace pid
         degree = (degree > 180) ? -(360 - degree) : ((degree < -180) ? (360 + degree) : (degree)); // optimize the turn direction
         turn(degree, timeout, multi, max_speed, exit_time);
     }
+
+    void drive_variable(double target_dist, double kp, int timeout=1500, double mult=1.0, double max_speed=127, int exit_time=100, double dou_kp = DRIVE_KP_H, double dou_ki = DRIVE_KI_H,double dou_kd = DRIVE_KD_H,double dou_imuk = IMU_K_H)
+    {
+        double drivekp;
+        
+        drivekp = kp;
+        //500: 0.1777
+        //1000: 0.1685
+        //2000: 0.1429
+
+
+        //0.1642
+        #define DRIVE_KI 0.002
+        #define DRIVE_KD 0 //5
+
+
+        #define IMU_K 0.001
+
+        if (fabs(end_head) - fabs(imu.get_heading()) > 1) {
+            start_head += end_head-imu.get_heading();
+        }
+
+        int starting = 180;
+        // start_head -= starting;
+        imu.set_heading(starting);
+
+        //Set Variables
+        double target = target_dist + chas.pos();
+        double error = target - chas.pos();
+        double prev_error;
+        double integral = 0;
+        double kintegral = 0;
+        double derivative = 0;
+        double init_heading = imu.get_heading();
+        double heading_error = 0;
+        double error_range_time = 0;
+        bool start_positive = target_dist >= 0 ? true : false;
+
+        bool exit = false;
+
+        int time = 0;
+
+        while (time < timeout)
+        {
+            prev_error = error;
+            
+            //P
+            error = target - chas.pos();
+            //I
+            if(fabs(error)<30) {
+                integral += error;
+            }
+            //D
+            derivative = (error - prev_error) * 1000;
+
+            //Correct sides, ensure heading stays same as beginning
+            heading_error = init_heading - imu.get_heading();
+
+            //PID
+            double speed = mult * (error * drivekp + integral * DRIVE_KI + derivative * DRIVE_KD);
+
+            //Heading correction
+            kintegral += heading_error;
+
+            double correction = (kintegral * IMU_K);
+
+            //Cap speed and correction sum to max
+            if (fabs(speed) + fabs(correction) > max_speed) 
+            {
+                double multiplier = max_speed/(fabs(speed) + fabs(correction));
+                speed *= multiplier;
+                correction *= multiplier;
+            }
+
+            //Exit Loop
+            if (fabs(error) < 3)
+            {
+                if(!exit)
+                    exit = true;
+                else
+                    error_range_time++;
+                if (exit_time <= error_range_time)
+                    break;
+            }
+
+            //Keep sides moving the same distances
+            // chas.spin_left(speed + correction * speed / 127.0);
+            // chas.spin_right(speed - correction * speed / 127.0);
+            chas.spin(speed);
+
+            //Logging
+            print_info_auton(time, error, speed);
+            
+            //Prevent infinite loops
+            pros::delay(1);
+            time++;
+        }
+        chas.stop();
+        double diff = imu.get_heading() - starting;
+        if (fabs(diff)>2) {
+            start_head+=diff;
+        }
+        
+        end_head = imu.get_heading();
+
+        global_heading += imu.get_heading() - starting;
+    }
+
 }
 
 //180

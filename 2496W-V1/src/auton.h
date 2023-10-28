@@ -20,7 +20,6 @@ using namespace std;
 using namespace pid;
 
 void defensive_left(){
-
     drive(1100);
     turn(45);
     intake.move(127);
@@ -39,39 +38,85 @@ void defensive_left(){
     intakeP.set(false);
     drive(-450);
     turn(-15);
-    drive(-1665);
-    
-    
-    
+    drive(-1665);   
 
 }
 
-
 void offensive_right(){
     intakeP.set(true);
-    drive(-600);
+    drive(-630);
     chas.spin_left(-127);
-    delay(230);
+    delay(200);
     chas.spin_left(0);
-    turn(-30);
-    drive(-900);
+    intakeP.set(false);
+    LwingsP.set(true);
+    turn(-25);
+    LwingsP.set(false);
+    drive(-950);
+    
     drive(300);
     chas.spin_left(127);
-    delay(375);
-    chas.spin_right(0);
-    delay(50);
-    drive(2400);
-    turn(-75);
-    RwingsP.set(true);
-    LwingsP.set(true);
-    turn(25);
-    drive(-900);
+    delay(355);
+    chas.spin(0);
+    intake.move(-127);
+    delay(150);
+    
+    // turn(180);
+    drive(2700);
+    delay(35);
+    intake.move(0);
+    turn(125);
+    
+    intake.move(127);
+    delay(10);
+    drive(1800);
+    drive(-400);
+    // turn(-75);
+    
+    // LwingsP.set(true);
+    // turn(25);
+    // drive(-900);
     
 }
 
 
 void skills(){
+    drive(20);
     matchload(47);
+    drive(-50);
+    turn(40);
+    drive(-1000);
+    turn(-15);
+    drive(-3300);
+    chas.spin_left(-127);
+    delay(200);
+    chas.spin_left(0);
+    drive(-650);
+    chas.spin_left(-127);
+    delay(200);
+    chas.spin_left(0);
+    LwingsP.set(true);
+   
+    LwingsP.set(false);
+    drive_variable(-1100, 0.7);
+    drive(800);
+    drive_variable(-950, 0.5);
+    drive(400);
+    turn(90);
+    drive(2400);   
+    turn(-90);
+    drive(-1900);
+    turn(90);
+    LwingsP.set(true);
+    RwingsP.set(true);
+    drive_variable(-1500, 0.7);
+    drive(500);
+    turn(35);
+    drive(-1500);
+    drive(500);
+
+
+    
 }
 
 
