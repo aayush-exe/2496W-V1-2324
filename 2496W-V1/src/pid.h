@@ -101,7 +101,7 @@ namespace pid
             }
 
             //Exit Loop
-            if (fabs(error) < 3)
+            if (fabs(error) < 4)
             {
                 if(!exit)
                     exit = true;
@@ -214,7 +214,7 @@ namespace pid
                 speed *= multiplier;
             }
 
-            if (fabs(error) < 0) // 0.15
+            if (fabs(error) < 0.3) // 0.15
             {
                 if(!exit)
                     exit = true;

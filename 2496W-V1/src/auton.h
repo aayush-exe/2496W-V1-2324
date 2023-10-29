@@ -26,9 +26,9 @@ void defensive_left(){
     drive(350);
     drive(-200);
     turn(-25);
-    drive(300);
+    drive(250);
     turn(25);
-    drive(-350);
+    drive(-280);
     chas.spin_left(-127);
     delay(150);
     chas.spin_left(0);
@@ -37,10 +37,65 @@ void defensive_left(){
     turn(-35);
     intakeP.set(false);
     drive(-450);
-    turn(-15);
+    turn(-7);
     drive(-1665);   
 
 }
+void left_no_bar(){
+    drive(1100);
+    turn(45);
+    intake.move(127);
+    drive(390);
+    drive(-400);
+    turn(-180, 1500);
+    intake.move(0);
+    drive(-700, 1300);
+    drive(200);
+   // turn(25);
+    turn_to(-6, 2000);
+    drive(-2080, 2000);
+    //turn(-40);
+    //drive(-1000);
+    turn(-60, 1000);
+    drive(1500, 3000, 1, 25);
+    //intakeP.set(true);
+    // drive(-900);
+    // turn(-35);
+  //  intakeP.set(false);
+
+}
+
+void left_normal_align(){
+    drive(1100);
+    turn(45);
+    intake.move(127);
+    drive(390);
+    drive(-400);
+    turn(-180, 1500);
+    intake.move(0);
+    drive(-700, 1300);
+    drive(200);
+   // turn(25);
+    turn_to(-6, 2000);
+    drive(-1180, 2000);
+    //turn(-40);
+    //drive(-1000);
+    turn(-90, 1000);
+    drive(800, 1200, 1, 70);
+    delay(300);
+    drive(-120);
+    chas.spin_left(50);
+    delay(1000);
+    chas.stop();
+    //drive(800, 1000);
+
+    //intakeP.set(true);
+    // drive(-900);
+    // turn(-35);
+  //  intakeP.set(false);
+
+}
+
 
 void offensive_right(){
     intakeP.set(true);
@@ -91,7 +146,7 @@ void skills(){
     chas.spin_left(-127);
     delay(200);
     chas.spin_left(0);
-    drive(-650);
+    drive(-700);
     chas.spin_left(-127);
     delay(200);
     chas.spin_left(0);
@@ -102,7 +157,7 @@ void skills(){
     drive(800);
     drive_variable(-950, 0.5);
     drive(400);
-    turn(90);
+    turn(100);
     drive(2400);   
     turn(-90);
     drive(-1900);
@@ -171,6 +226,8 @@ void test_mode()
 
 std::vector<Auton> autons
 {
+    Auton("elims straight", left_no_bar),
+    Auton("elims diagonal", left_normal_align),
     Auton("LEFT", defensive_left),
     Auton("RIGHT", offensive_right),
     Auton("SKILLS", skills),
