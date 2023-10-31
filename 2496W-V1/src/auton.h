@@ -87,12 +87,7 @@ void left_normal_align(){
     chas.spin_left(50);
     delay(1000);
     chas.stop();
-    //drive(800, 1000);
 
-    //intakeP.set(true);
-    // drive(-900);
-    // turn(-35);
-  //  intakeP.set(false);
 
 }
 
@@ -126,53 +121,55 @@ void offensive_right(){
     delay(10);
     drive(1800);
     drive(-400);
-    // turn(-75);
-    
-    // LwingsP.set(true);
-    // turn(25);
-    // drive(-900);
-    
+
 }
 
 
 void skills(){
-    drive(20);
+    drive(30);
     matchload(47);
     intake.move(127);
+
     drive(-50);
     turn(35);
     drive(-1000);
-    turn(-30);
+    turn(-20);
     drive(-3250);
+
     chas.spin_left(-127);
-    delay(200);
+    delay(175);
     chas.spin_left(0);
     LwingsP.set(true);
     drive(-2500);
     delay(100);
     chas.spin_left(-127);
-    delay(200);
+    delay(175);
     chas.spin_left(0);
     LwingsP.set(false);
-    drive(-1000, 1500, 3);
+
+    drive(-900, 1500, 3);
     drive(600);
-    drive(-950, 1500, 3);
+    drive(-600, 1500, 3);
     drive(600);
+
     turn(100);
-    drive(2300);   
+    drive(2250);   
     turn(-100);
     drive(-1800);
     turn(90);
+
     LwingsP.set(true);
     RwingsP.set(true);
     drive(-1500, 1500, 3);
     drive(600);
+
     turn(-15);
     drive(-1500, 1500, 3);
     drive(500);
 
-
-    
+    turn(15);
+    drive(-1200, 1500, 3);
+    drive(1000);
 }
 
 
