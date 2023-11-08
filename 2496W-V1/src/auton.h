@@ -126,48 +126,52 @@ void offensive_right(){
 
 
 void skills(){
-    drive(30);
-    //matchload(47);
+    drive(50);
+    matchload(47);
     intake.move(127);
 
     drive(-50);
-    turn(35);
-    drive(-1000);
-    turn(-25);
-    drive(-3100);
+    turn(40);
+    drive(-875);
+    turn_to(0);
+    drive(-3350);
 
     chas.spin_left(-127);
     delay(200);
     chas.spin_left(0);
-    LwingsP.set(true);
-    drive(-2000);
     delay(100);
-    chas.spin_left(-127);
-    delay(225);
-    chas.spin_left(0);
+    LwingsP.set(true);
+    drive(-1275);
+    delay(100);
+    
+    // chas.spin_left(-127);
+    // delay(170);
+    // chas.spin_left(0);
     LwingsP.set(false);
+    turn(-40);
+    drive_variable(-700, 1);
+    drive(600);
+    drive_variable(-600, 2);
+    drive(200);
 
-    drive(-800, 1500, 3);
-    drive(700);
-    drive(-800, 1500, 3);
-    drive(700);
-
-    turn(110);
-    drive(2250);   
-    turn(-120);
+    turn_to(40);
+    drive(1200);
+    turn_to(10);
+    drive(1500);   
+    turn(-90);
     drive(-1500);
     turn(90);
 
     LwingsP.set(true);
     RwingsP.set(true);
-    drive(-1500, 1500, 3);
-    drive(600);
+    drive(-1400, 1500, 3);
+    drive(1500);
 
     turn(-15);
     drive(-1500, 1500, 3);
-    drive(500);
+    drive(1500);
 
-    turn(15);
+    turn(30);
     drive(-1200, 1500, 3);
     drive(1000);
 }
@@ -224,8 +228,8 @@ void test_mode()
 
 std::vector<Auton> autons
 {
-    Auton("elims straight", left_no_bar),
-    Auton("elims diagonal", left_normal_align),
+    Auton("ELIMS STRAIGHT", left_no_bar),
+    Auton("ELIMS DIAGONAL", left_normal_align),
     Auton("LEFT", defensive_left),
     Auton("RIGHT", offensive_right),
     Auton("SKILLS", skills),

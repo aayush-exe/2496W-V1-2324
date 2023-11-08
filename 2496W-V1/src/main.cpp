@@ -34,6 +34,7 @@ void opcontrol()
 	bool chassis_on = true;
 	chas.set_brake();
 	chas.reset();
+	pid::global_heading = 337;
 
 	while(true)
 	{

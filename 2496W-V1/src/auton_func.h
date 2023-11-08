@@ -33,8 +33,8 @@ void matchload(int triballs)
     }
     cataCheck = cataLimit.get_value();
     while (!cataCheck){
-        cataCheck = cataLimit.get_value();
         cata.move(-127);
+        cataCheck = cataLimit.get_value();
     }
     cata.move(0);
 }

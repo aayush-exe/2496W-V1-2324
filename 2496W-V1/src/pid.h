@@ -29,7 +29,7 @@ namespace pid
     //For Yousef: finish abs turn
     //For Brandon: improve
     double end_head = 0;
-    double global_heading = 0;
+    double global_heading;
 
     void drive(double target_dist, int timeout=1500, double mult=1.0, double max_speed=127, int exit_time=100, double dou_kp = DRIVE_KP_H, double dou_ki = DRIVE_KI_H,double dou_kd = DRIVE_KD_H,double dou_imuk = IMU_K_H)
     {
@@ -246,7 +246,7 @@ namespace pid
         global_heading += imu.get_heading() - starting;
     }
 
-    void turn_to(double degree_to, int timeout=3000, double multi=1.0, double max_speed=127, int exit_time=100)
+    void turn_to(double degree_to, int timeout=1000, double multi=1.0, double max_speed=127, int exit_time=100)
     {
         double degree = degree_to - global_heading;
         degree = (degree > 180) ? -(360 - degree) : ((degree < -180) ? (360 + degree) : (degree)); // optimize the turn direction
