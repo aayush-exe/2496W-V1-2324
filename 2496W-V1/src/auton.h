@@ -126,38 +126,39 @@ void offensive_right(){
 
 
 void skills(){
+    
     drive(50);
     matchload(47);
     intake.move(127);
 
     drive(-50);
-    turn(40);
-    drive(-875);
+    turn(32);
+    drive(-895);
     turn_to(0);
-    drive(-3350);
+    drive(-3450);
 
     chas.spin_left(-127);
-    delay(200);
+    delay(175);
     chas.spin_left(0);
     delay(100);
     LwingsP.set(true);
-    drive(-1275);
+    drive(-1400);
     delay(100);
     
     // chas.spin_left(-127);
     // delay(170);
     // chas.spin_left(0);
     LwingsP.set(false);
-    turn(-40);
+    turn(-30);
     drive_variable(-700, 1);
     drive(600);
+   
     drive_variable(-600, 2);
-    drive(200);
+    drive(280);
 
-    turn_to(40);
-    drive(1200);
-    turn_to(10);
-    drive(1500);   
+    turn_to(35);
+    drive(2250);
+     
     turn(-90);
     drive(-1500);
     turn(90);
@@ -172,7 +173,7 @@ void skills(){
     drive(1500);
 
     turn(30);
-    drive(-1200, 1500, 3);
+    drive(-1500, 1500, 3);
     drive(1000);
 }
 
