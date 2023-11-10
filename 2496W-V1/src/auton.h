@@ -33,14 +33,14 @@ void defensive_left(){
     delay(150);
     chas.spin_left(0);
     intakeP.set(true);
-    drive(-900);
+    drive(-910);
     turn(-35);
     intakeP.set(false);
     drive(-450);
-    turn(-7);
-    drive(-1665);   
-
+    turn(-8);
+    drive(-1675);   
 }
+
 void left_no_bar(){
     drive(1100);
     turn(45);
