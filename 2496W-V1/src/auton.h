@@ -23,22 +23,23 @@ void defensive_left(){
     drive(1100);
     turn(45);
     intake.move(127);
-    drive(350);
+    drive(375);
     drive(-200);
-    turn(-25);
-    drive(250);
-    turn(25);
-    drive(-280);
+    turn(180);
+    drive(-450, 1500, 1.5);
+    drive(100);
+    turn(180);
+    drive(-300);
     chas.spin_left(-127);
     delay(150);
     chas.spin_left(0);
     intakeP.set(true);
     drive(-910);
-    turn(-35);
+    turn(-28);
     intakeP.set(false);
-    drive(-450);
-    turn(-8);
-    drive(-1675);   
+    drive(-500);
+    turn(-20);
+    drive(-1630);   
 }
 
 void left_no_bar(){
@@ -106,7 +107,7 @@ void offensive_right(){
     
     drive(300);
     chas.spin_left(127);
-    delay(355);
+    delay(430);
     chas.spin(0);
     intake.move(-127);
     delay(150);
