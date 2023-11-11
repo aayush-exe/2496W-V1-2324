@@ -95,6 +95,50 @@ void left_normal_align(){
 
 void offensive_right(){
     intakeP.set(true);
+    drive(-685);
+    chas.spin_left(-127);
+    delay(205);
+    chas.spin_left(0);
+    intakeP.set(false);
+    LwingsP.set(true);
+    turn(-25);
+    LwingsP.set(false);
+    drive(-950, 1500, 3);
+    
+    drive(400);
+    turn(92);
+    drive(1000);
+    turn(51);
+    intake.move(-127);
+    delay(150);
+    
+    // turn(180);
+    drive(2220);
+    intake.move(0);
+    
+    turn(55);
+    drive(300);
+    turn(90);
+    
+    intake.move(127);
+    
+    delay(10);
+
+    drive(900);
+    turn(180);
+    LwingsP.set(true);
+    RwingsP.set(true);
+    drive(-800, 1500, 3);
+    
+    drive(500, 1500);
+   
+    
+    turn(90);
+
+}
+
+void right_bar(){
+    intakeP.set(true);
     drive(-630);
     chas.spin_left(-127);
     delay(200);
@@ -103,25 +147,19 @@ void offensive_right(){
     LwingsP.set(true);
     turn(-25);
     LwingsP.set(false);
-    drive(-950);
+    drive(-950, 1500, 2);
     
-    drive(300);
+    drive(925);
     chas.spin_left(127);
-    delay(430);
-    chas.spin(0);
-    intake.move(-127);
-    delay(150);
+    delay(200);
+    chas.spin_left(0);
+    delay(100);
+    turn(180);
+    turn(-45);
     
     // turn(180);
-    drive(2700);
-    delay(35);
-    intake.move(0);
-    turn(125);
-    
-    intake.move(127);
-    delay(10);
-    drive(1800);
-    drive(-400);
+    drive(-1630);
+    chas.spin(0);
 
 }
 
@@ -234,6 +272,7 @@ std::vector<Auton> autons
     Auton("ELIMS DIAGONAL", left_normal_align),
     Auton("LEFT", defensive_left),
     Auton("RIGHT", offensive_right),
+    Auton("POLE RIGHT", right_bar),
     Auton("SKILLS", skills),
     Auton("NO AUTON", blank),
     Auton("test", test)

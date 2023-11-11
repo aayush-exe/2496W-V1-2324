@@ -27,7 +27,6 @@ void matchload(int triballs)
         if (cataCheck == true){
             count += 1;
             delay(300);
-            
         }
 
     }
