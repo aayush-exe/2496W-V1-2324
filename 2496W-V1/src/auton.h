@@ -220,17 +220,6 @@ void skills(){
 void blank(){}
 
 
-void test()
-{
-    drive(1230);
-    delay(10);
-    turn_to(180);
-    delay(10);
-    drive(1230);
-    //turn(180);
-}
-
-
 void test_mode()
 {
     long long timer = 0;
@@ -266,8 +255,34 @@ void test_mode()
     }
 }
 
+void test(){
+    turn(180);
+    delay(200);
+
+    turn(-90);
+    delay(200);
+
+    turn(45);
+    delay(200);
+
+    turn(-22.5);
+    delay(200);
+
+    turn(12.25);
+    delay(200);
+
+    turn(-6);
+    delay(200);
+
+    turn(3);
+    delay(200);
+
+    turn(-1);
+}
+
 std::vector<Auton> autons
 {
+    Auton("test", test),
     Auton("ELIMS STRAIGHT", left_no_bar),
     Auton("ELIMS DIAGONAL", left_normal_align),
     Auton("LEFT", defensive_left),
@@ -275,7 +290,6 @@ std::vector<Auton> autons
     Auton("POLE RIGHT", right_bar),
     Auton("SKILLS", skills),
     Auton("NO AUTON", blank),
-    Auton("test", test)
 };
 
 #endif

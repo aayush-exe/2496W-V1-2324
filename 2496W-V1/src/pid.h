@@ -37,7 +37,6 @@ namespace pid
         //500: 0.1777
         //1000: 0.1685
         //2000: 0.1429
-
         #define DRIVE_KI 0.002
         #define DRIVE_KD 0 //5
 
@@ -139,7 +138,7 @@ namespace pid
         return error / fabs(error) * (25 * log(0.25 * (fabs(error) + 4)) + 5);
     }
 
-    void turn(double target_deg, int timeout=1000, double multi=1.0, double max_speed=127, int exit_time=100)
+    void turn(double target_deg, int timeout=1000, bool early_exit = true, double multi=1.0, double max_speed=127, int exit_time=100)
     {  
 
         target_deg = fabs(target_deg)<=180 ? target_deg : (target_deg<0 ? target_deg + 180 : target_deg - 180);
@@ -160,7 +159,10 @@ namespace pid
             TURN_KD = 0.3;
         }
 
-        double max_error = 6;
+        //comment this out later. If need to revert, comment out the lines below.
+        TURN_KP = 4.75; //4.3, 4.5
+        TURN_KI = 0.4; //0.08, .1
+        TURN_KD = 0.26; //.25, .26(earlier), .27(90)
 
         int starting;
 
@@ -182,10 +184,16 @@ namespace pid
         double integral = 0;
         double derivative = 0;
         double error_range_time;
+        double early_exit_time;
 
         bool exit = false;
+        bool same_error;
 
         int time = 0;
+
+        int scaler = (target_deg<20 ? 1000 : 100);
+
+
         while (time<timeout)
         {
             double speed;
@@ -193,12 +201,12 @@ namespace pid
             error = target - imu.get_heading();
             
             if (target_deg < 120){
-                if(abs(error) < 2){
+                if(fabs(error) < 2){
                     integral += error / 100;
                 }
             }
             else{
-                if(abs(error) < 3){
+                if(fabs(error) < 2){
                     integral += error / 100;
                 }
             }
@@ -214,13 +222,23 @@ namespace pid
                 speed *= multiplier;
             }
 
-            if (fabs(error) < 0.3) // 0.15
+            if (fabs(error) < 0.6) // 0.15
             {
                 if(!exit)
                     exit = true;
                 else
                     error_range_time += 10;
                 if (exit_time <= error_range_time)
+                    break;
+            }
+
+            if (fabs(error) < 2 && (std::round(prev_error * scaler) / scaler == std::round(error * scaler) / scaler)) // 0.15
+            {
+                if(!same_error)
+                    same_error = true;
+                else
+                    early_exit_time += 10;
+                if (exit_time <= early_exit_time)
                     break;
             }
 

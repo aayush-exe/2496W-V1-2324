@@ -38,4 +38,11 @@ void matchload(int triballs)
     cata.move(0);
 }
 
+void halfCata(){
+    double pos = abs(cata.get_position());
+
+    while (!(1500 < pos && pos < 1590)) cata.move(-127);
+    cata.move(0);
+}
+
 #endif
