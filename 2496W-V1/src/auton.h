@@ -27,18 +27,18 @@ void defensive_left(){
     drive(-200);
     turn(180);
     drive(-450, 1500, 1.5);
-    drive(100);
+    drive(250);
     turn(180);
-    drive(-300);
+    drive(-310);
     chas.spin_left(-127);
-    delay(150);
+    delay(200);
     chas.spin_left(0);
     intakeP.set(true);
-    drive(-910);
-    turn(-28);
+    drive(-900);
+    turn(-30);
     intakeP.set(false);
     drive(-500);
-    turn(-20);
+    turn(-25);
     drive(-1630);   
 }
 
@@ -103,32 +103,32 @@ void offensive_right(){
     LwingsP.set(true);
     turn(-25);
     LwingsP.set(false);
-    drive(-950, 1500, 3);
+    drive(-950, 1500, 5);
     
     drive(400);
     turn(92);
     drive(1000);
-    turn(51);
+    turn(50);
     intake.move(-127);
     delay(150);
     
     // turn(180);
     drive(2220);
-    intake.move(0);
     
     turn(55);
     drive(300);
+    
     turn(90);
     
     intake.move(127);
     
     delay(10);
 
-    drive(900);
+    drive(600);
     turn(180);
     LwingsP.set(true);
     RwingsP.set(true);
-    drive(-800, 1500, 3);
+    drive(-900, 1500, 3);
     
     drive(500, 1500);
    
@@ -149,7 +149,7 @@ void right_bar(){
     LwingsP.set(false);
     drive(-950, 1500, 2);
     
-    drive(925);
+    drive(750);
     chas.spin_left(127);
     delay(200);
     chas.spin_left(0);
@@ -167,7 +167,7 @@ void right_bar(){
 void skills(){
     
     drive(50);
-    matchload(47);
+    //matchload(47);
     intake.move(127);
 
     drive(-50);
@@ -181,7 +181,7 @@ void skills(){
     chas.spin_left(0);
     delay(100);
     LwingsP.set(true);
-    drive(-1400);
+    drive(-1320);
     delay(100);
     
     // chas.spin_left(-127);
@@ -192,7 +192,7 @@ void skills(){
     drive_variable(-700, 1);
     drive(600);
    
-    drive_variable(-600, 2);
+    drive_variable(-600, 3);
     drive(280);
 
     turn_to(35);
