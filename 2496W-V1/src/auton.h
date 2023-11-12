@@ -195,7 +195,7 @@ void skills(){
     drive_variable(-600, 3);
     drive(280);
 
-    turn_to(35);
+    turn_to(35); // ahahaha
     drive(2250);
      
     turn(-90);
