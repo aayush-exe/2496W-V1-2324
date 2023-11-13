@@ -34,10 +34,7 @@ void opcontrol()
 	bool chassis_on = true;
 	chas.set_brake();
 	chas.reset();
-	pid::global_heading = 337;
-	if ((*auton).get_name() == "skills"){
-		pid::global_heading = 337;
-	}
+	//pid::global_heading = 337;
 
 	while(true)
 	{

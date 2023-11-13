@@ -21,25 +21,26 @@ using namespace pid;
 
 void defensive_left(){
     drive(1100);
-    turn(45);
+    turn_to(45);
     intake.move(127);
     drive(375);
     drive(-200);
     turn(180);
-    drive(-450, 1500, 1.5);
+    drive(-450, 800, 2);
     drive(250);
-    turn(180);
-    drive(-310);
+
+    turn_to(45);
+    drive(-200);
     chas.spin_left(-127);
     delay(200);
     chas.spin_left(0);
     intakeP.set(true);
-    drive(-900);
+    drive(-780);
     turn(-30);
     intakeP.set(false);
-    drive(-500);
-    turn(-25);
-    drive(-1630);   
+    drive(-600);
+    turn_to(-28);
+    drive(-1670);   
 }
 
 void left_no_bar(){
@@ -167,7 +168,7 @@ void right_bar(){
 void skills(){
     
     drive(50);
-    //matchload(47);
+    matchload(47);
     intake.move(127);
 
     drive(-50);
