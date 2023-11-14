@@ -30,7 +30,7 @@ void defensive_left(){
     drive(250);
 
     turn_to(45);
-    drive(-200);
+    drive(-250);
     chas.spin_left(-127);
     delay(200);
     chas.spin_left(0);
