@@ -34,7 +34,12 @@ void opcontrol()
 	bool chassis_on = true;
 	chas.set_brake();
 	chas.reset();
-	//pid::global_heading = 337;
+	
+
+	if ((*auton).get_name() == "SKILLS"){
+		pid::global_heading = 337;
+	}
+	
 
 	while(true)
 	{
@@ -44,6 +49,7 @@ void opcontrol()
 		intakeCon();
 		cataConHalf(time);
 		piston_cont();
+		//print_name(time, (*auton).get_name());
 		print_info(time, chassis_on);
 
 		if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_RIGHT)) chassis_on = !chassis_on;

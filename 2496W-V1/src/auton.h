@@ -158,7 +158,7 @@ void right_bar(){
     turn(180);
     turn(-45);
     
-    // turn(180);
+    // turn(180);`  
     drive(-1630);
     chas.spin(0);
 
@@ -168,40 +168,45 @@ void right_bar(){
 void skills(){
     
     drive(50);
-    matchload(47);
+    //matchload(47);
     intake.move(127);
 
     drive(-50);
     turn(32);
-    drive(-895);
+    drive(-900);
     turn_to(0);
-    drive(-3450);
+    drive(-3300);
 
-    chas.spin_left(-127);
-    delay(175);
+    turn_to(-45);
     chas.spin_left(0);
     delay(100);
     LwingsP.set(true);
-    drive(-1320);
+    drive(-1650);
     delay(100);
     
     // chas.spin_left(-127);
     // delay(170);
     // chas.spin_left(0);
     LwingsP.set(false);
-    turn(-30);
-    drive_variable(-700, 1);
+    turn_to(-90);
+    drive_variable(-700, 2);
     drive(600);
    
     drive_variable(-600, 3);
     drive(280);
 
-    turn_to(35); // ahahaha
-    drive(2250);
+    turn_to(0); // ahahaha
+    drive(1000);
+    turn_to(45, 700);
+    drive(700);
+    turn_to(0, 700);
+    drive(825);
      
-    turn(-90);
+    turn_to(-90);
     drive(-1500);
-    turn(90);
+
+    turn_to(0);
+    
 
     LwingsP.set(true);
     RwingsP.set(true);

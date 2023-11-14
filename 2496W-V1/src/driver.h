@@ -19,7 +19,7 @@ void drive()
     double right = abs(con.get_analog(E_CONTROLLER_ANALOG_RIGHT_X)) > 10 ? con.get_analog(E_CONTROLLER_ANALOG_RIGHT_X) : 0;
     
     //right = ((127.0 / pow(127, TURN_K)) * pow(abs(right), TURN_K) * (right/127));
-    right /= 1.225;
+    right /= 1.235;
 
     if(left || right)
     {
@@ -114,39 +114,49 @@ void cataConHalf(int time)
 {
     static bool halfCata = false;
     static bool cataPressed;
+    static bool matchload = false; 
     bool cataCheck = cataLimit.get_value();
     double pos = abs(cata.get_position());
     static int deadzone = 1500;
 
+
+    
     if (con.get_digital(pros::E_CONTROLLER_DIGITAL_L1))
         cataPressed = true;
-
-    if (!cataCheck)
-    { 
-        if (halfCata && (deadzone < pos && pos < 1590) && cataPressed == false)
-        {
-            cata.move(0);
-            deadzone = 1400;
+    if (!matchload){
+        if (!cataCheck)
+        { 
+            if (halfCata && (deadzone < pos && pos < 1590) && cataPressed == false)
+            {
+                cata.move(0);
+                deadzone = 1400;
+            }
+            else 
+            {
+                deadzone = 1500;
+                cata.move(-127);
+                cataPressed = false;
+            }
         }
+        else if (cataPressed && cataCheck)
+            cata.move(-127);
         else 
         {
-            deadzone = 1500;
-            cata.move(-127);
-            cataPressed = false;
+            cata.move(0);
+            cata.tare_position();
         }
     }
-    else if (cataPressed && cataCheck)
+    else{
         cata.move(-127);
-    else 
-    {
-        cata.move(0);
-        cata.tare_position();
     }
 
     if (con.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_B))
         halfCata = !halfCata;
     if (halfCata && (time%2000 == 0))
         con.rumble(".");
+    if (con.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_DOWN)){
+        matchload = !matchload;
+    }
 
 }
 Auton auton_selector(std::vector<Auton> autons)
@@ -187,7 +197,7 @@ Auton auton_selector(std::vector<Auton> autons)
 }
 void piston_cont()
 {
-    if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_DOWN)) intakeP.toggle();
+    if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_LEFT)) intakeP.toggle();
     if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_L2)){
         LwingsP.toggle();
         RwingsP.toggle();
@@ -217,6 +227,12 @@ void print_info_auton(int time, double error, double speed)
         con.print(1, 0, "%.2f : %.2f          ", imu.get_heading(), chas.pos());
     if(time % 150 == 0 && time % 100 != 0 && time % 150 != 0 && time%2000 != 0) 
         con.print(2, 0, "%.2f | %.0f       ", error, time);
+}
+
+void print_name(int time, string name){
+    if (time % 50 == 0 and time % 2000 != 0){
+        con.print(0, 0, "%s", name);
+    }
 }
 
 #endif
