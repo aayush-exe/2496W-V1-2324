@@ -3,6 +3,7 @@
 
 #include "main.h"
 #include "global.h"
+#include "driver.h"
 
 
 #include "pros/misc.h"
@@ -19,6 +20,7 @@ using namespace glb;
 void matchload(int triballs)
 {
     int count = 0;
+    int time = 0;
     bool cataCheck;
     while (count <= triballs)
     {
@@ -26,8 +28,11 @@ void matchload(int triballs)
         cataCheck = cataLimit.get_value();
         if (cataCheck == true){
             count += 1;
+            print_skills(time, count);
             delay(300);
+            time += 2;
         }
+        
 
     }
     cataCheck = cataLimit.get_value();

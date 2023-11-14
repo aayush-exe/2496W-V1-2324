@@ -19,7 +19,7 @@ void drive()
     double right = abs(con.get_analog(E_CONTROLLER_ANALOG_RIGHT_X)) > 10 ? con.get_analog(E_CONTROLLER_ANALOG_RIGHT_X) : 0;
     
     //right = ((127.0 / pow(127, TURN_K)) * pow(abs(right), TURN_K) * (right/127));
-    right /= 1.235;
+    right /= 1.229;
 
     if(left || right)
     {
@@ -152,8 +152,10 @@ void cataConHalf(int time)
 
     if (con.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_B))
         halfCata = !halfCata;
+    
     if (halfCata && (time%2000 == 0))
         con.rumble(".");
+    
     if (con.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_DOWN)){
         matchload = !matchload;
     }
@@ -232,6 +234,12 @@ void print_info_auton(int time, double error, double speed)
 void print_name(int time, string name){
     if (time % 50 == 0 and time % 2000 != 0){
         con.print(0, 0, "%s", name);
+    }
+}
+
+void print_skills(int time, int count){
+    if (time % 50 == 0 and time % 2000 != 0){
+        con.print(0, 0, "%d", count);
     }
 }
 

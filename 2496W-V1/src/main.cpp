@@ -50,7 +50,11 @@ void opcontrol()
 		cataConHalf(time);
 		piston_cont();
 		//print_name(time, (*auton).get_name());
-		print_info(time, chassis_on);
+		if ((*auton).get_name() != "SKILLS"){
+			print_info(time, chassis_on);
+		}
+		
+		
 
 		if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_RIGHT)) chassis_on = !chassis_on;
 		if(con.get_digital(E_CONTROLLER_DIGITAL_UP) && chassis_on) autonomous();
