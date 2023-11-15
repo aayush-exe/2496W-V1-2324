@@ -175,45 +175,45 @@ void skills(){
     turn(32);
     drive(-900);
     turn_to(0);
-    drive(-3300);
+    drive(-3300, 400);
 
-    turn_to(-45);
+    turn_to(-45, 400);
     chas.spin_left(0);
     delay(100);
     LwingsP.set(true);
-    drive(-1650);
+    drive(-1650, 400);
     delay(100);
     
     // chas.spin_left(-127);
     // delay(170);
     // chas.spin_left(0);
     LwingsP.set(false);
-    turn_to(-90);
-    drive_variable(-700, 2);
-    drive(600);
+    turn_to(-90, 400);
+    drive_variable(-700, 2, 400);
+    drive(600, 200);
    
-    drive_variable(-600, 3);
-    drive(280);
+    drive_variable(-600, 3, 400);
+    drive(280, 200);
 
     turn_to(0); // ahahaha
-    drive(1000);
-    turn_to(45, 700);
-    drive(700);
-    turn_to(0, 700);
-    drive(825);
+    drive(1000, 400);
+    turn_to(45, 400);
+    drive(700, 400);
+    turn_to(0, 400);
+    drive(825, 400);
      
-    turn_to(-90);
-    drive(-1500);
+    turn_to(-90, 400);
+    drive(-1500, 400);
 
-    turn_to(0);
+    turn_to(0, 200);
     
 
     LwingsP.set(true);
     RwingsP.set(true);
-    drive(-1400, 1500, 3);
-    drive(1500);
+    drive(-1400, 400, 3);
+    drive(1500, 400);
 
-    turn(-15);
+    turn(-15, 400);
     drive(-1500, 1500, 3);
     drive(1500);
 
