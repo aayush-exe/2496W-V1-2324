@@ -43,7 +43,7 @@ void defensive_left(){
     drive(-1670);   
 }
 
-void left_no_bar(){
+void left_straight(){
     drive(1100);
     turn(45);
     intake.move(127);
@@ -67,7 +67,7 @@ void left_no_bar(){
 
 }
 
-void left_normal_align(){
+void left_diagonal(){
     drive(1100);
     turn(45);
     intake.move(127);
@@ -289,13 +289,13 @@ void test(){
 std::vector<Auton> autons
 {
     Auton("test", test),
-    Auton("elims straight", left_no_bar),
-    Auton("elims diagonal", left_normal_align),
+    Auton("elims straight", left_straight),
+    Auton("elims diagonal", left_diagonal),
     Auton("left", defensive_left),
     Auton("right", offensive_right),
     Auton("pole right", right_bar),
     Auton("skills", skills),
-    Auton("no auton", blank),
+    Auton("no auton", blank)
 };
 
 #endif
