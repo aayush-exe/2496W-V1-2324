@@ -175,7 +175,7 @@ void skills(){
     turn(32);
     drive(-900);
     turn_to(0);
-    drive(-3300, 1000);
+    drive(-3400, 1000);
 
     turn_to(-45, 400);
     chas.spin_left(0);
