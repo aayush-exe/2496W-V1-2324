@@ -34,10 +34,10 @@ void defensive_left(){
     chas.spin_left(-127);
     delay(200);
     chas.spin_left(0);
-    intakeP.set(true);
+    hangP.set(true);
     drive(-780);
     turn(-30);
-    intakeP.set(false);
+    hangP.set(false);
     drive(-600);
     turn_to(-28);
     drive(-1670);   
@@ -95,12 +95,12 @@ void left_normal_align(){
 
 
 void offensive_right(){
-    intakeP.set(true);
+    hangP.set(true);
     drive(-685);
     chas.spin_left(-127);
     delay(205);
     chas.spin_left(0);
-    intakeP.set(false);
+    hangP.set(false);
     LwingsP.set(true);
     turn(-25);
     LwingsP.set(false);
@@ -139,12 +139,12 @@ void offensive_right(){
 }
 
 void right_bar(){
-    intakeP.set(true);
+    hangP.set(true);
     drive(-630);
     chas.spin_left(-127);
     delay(200);
     chas.spin_left(0);
-    intakeP.set(false);
+    hangP.set(false);
     LwingsP.set(true);
     turn(-25);
     LwingsP.set(false);

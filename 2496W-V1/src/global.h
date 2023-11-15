@@ -22,11 +22,11 @@ namespace glb
     #define P_CATA 15
     #define P_DISTANCE 3
     #define P_CATASWITCH 'A'
-    #define P_INTAKEP 'C'
+    #define P_HANGP 'C'
     #define P_RWINGSP 'G'
     #define P_LWINGSP 'H'
-    #define P_LHANG 'D'
-    #define P_RHANG 'E'
+    #define P_BLOCKERP 'D'
+   
    
     //objects
     Chassis chas({P_LF, P_LM, P_LB}, {P_RF, P_RM, P_RB}, pros::E_MOTOR_GEARSET_06, false);
@@ -35,9 +35,8 @@ namespace glb
 
     Piston LwingsP(P_LWINGSP);
     Piston RwingsP(P_RWINGSP);
-    Piston intakeP(P_INTAKEP);
-    Piston LhangP(P_LHANG);
-    Piston RhangP(P_RHANG);
+    Piston hangP(P_HANGP);
+    Piston blockerP(P_BLOCKERP);
 
     Distance dist(P_DISTANCE);
     Imu imu(P_IMU);
