@@ -289,13 +289,13 @@ void test(){
 std::vector<Auton> autons
 {
     Auton("test", test),
-    Auton("ELIMS STRAIGHT", left_no_bar),
-    Auton("ELIMS DIAGONAL", left_normal_align),
-    Auton("LEFT", defensive_left),
-    Auton("RIGHT", offensive_right),
-    Auton("POLE RIGHT", right_bar),
-    Auton("SKILLS", skills),
-    Auton("NO AUTON", blank),
+    Auton("elims straight", left_no_bar),
+    Auton("elims diagonal", left_normal_align),
+    Auton("left", defensive_left),
+    Auton("right", offensive_right),
+    Auton("pole right", right_bar),
+    Auton("skills", skills),
+    Auton("no auton", blank),
 };
 
 #endif

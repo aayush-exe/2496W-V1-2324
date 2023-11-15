@@ -16,11 +16,12 @@ using namespace std;
 using namespace glb;
  
 Auton *auton;
+Auton temp;
 
 void initialize() {
 	lcd::initialize();
 	con.clear();
-	static Auton temp = auton_selector(autons);
+	temp = auton_selector(autons);
 	auton = &temp;
 	
 }
@@ -36,9 +37,7 @@ void opcontrol()
 	chas.reset();
 	
 
-	if ((*auton).get_name() == "SKILLS"){
-		pid::global_heading = 337;
-	}
+	if (temp.get_name() == "skills") pid::global_heading = 337;
 	
 
 	while(true)
@@ -49,13 +48,10 @@ void opcontrol()
 		intakeCon();
 		cataConHalf(time);
 		piston_cont();
-		//print_name(time, (*auton).get_name());
 		if ((*auton).get_name() != "SKILLS"){
 			print_info(time, chassis_on);
 		}
 		
-		
-
 		if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_RIGHT)) chassis_on = !chassis_on;
 		if(con.get_digital(E_CONTROLLER_DIGITAL_UP) && chassis_on) autonomous();
 
