@@ -237,7 +237,7 @@ void print_name(int time, string name){
 }
 
 void print_skills(int time, int count){
-    if (time % 50 == 0 and time % 2000 != 0){
+    if (time % 2 == 0 and time % 10 != 0){
         con.print(0, 0, "%d", count);
     }
 }
