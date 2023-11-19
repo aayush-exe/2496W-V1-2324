@@ -16,12 +16,12 @@ using namespace std;
 using namespace glb;
  
 Auton *auton;
-Auton temp;
+
 
 void initialize() {
 	lcd::initialize();
 	con.clear();
-	temp = auton_selector(autons);
+	static Auton temp = auton_selector(autons);
 	auton = &temp;
 	
 }
@@ -37,7 +37,7 @@ void opcontrol()
 	chas.reset();
 	
 
-	if (temp.get_name() == "skills") pid::global_heading = 337;
+	if ((*auton).get_name() == "skills") pid::global_heading = 337;
 	
 
 	while(true)

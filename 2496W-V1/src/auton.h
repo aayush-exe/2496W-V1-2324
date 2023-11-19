@@ -30,17 +30,44 @@ void defensive_left(){
     drive(250);
 
     turn_to(45);
-    drive(-250);
-    chas.spin_left(-127);
-    delay(200);
-    chas.spin_left(0);
+    drive(-400);
+    turn_to(10);
     hangP.set(true);
-    drive(-780);
-    turn(-30);
+    delay(200);
+    drive(-715);
+    turn(-20);
+    
+    drive(-600, 1500, 2);
     hangP.set(false);
-    drive(-600);
-    turn_to(-28);
-    drive(-1670);   
+    delay(100);
+    turn_to(-47);
+    blockerP.set(true);
+    drive(-1650);   
+}
+
+void new_left(){
+    drive(450, 500);
+    hangP.set(true);
+    drive(-235);
+    turn(-30, 800);
+    hangP.set(false);
+    turn_to(0);
+    drive(950, 800);
+    turn_to(45);
+    intake.move(127);
+    drive(375);
+    drive(-200);
+    turn(180);
+    drive(-450, 500, 2);
+    drive(250);
+
+    turn_to(45);
+    drive(-400);
+    turn_to(0, 600);
+    drive(-1100);
+    turn_to(-47);
+    blockerP.set(true);
+    drive(-1675);   
 }
 
 void left_straight(){
@@ -55,11 +82,12 @@ void left_straight(){
     drive(200);
    // turn(25);
     turn_to(-6, 2000);
-    drive(-2080, 2000);
+    drive(-2050, 2000);
     //turn(-40);
     //drive(-1000);
-    turn(-60, 1000);
+    turn_to(-65);
     drive(1500, 3000, 1, 25);
+    //blockerP.set(true);
     //intakeP.set(true);
     // drive(-900);
     // turn(-35);
@@ -289,6 +317,7 @@ void test(){
 std::vector<Auton> autons
 {
     Auton("test", test),
+    Auton("newlegt", new_left),
     Auton("elims straight", left_straight),
     Auton("elims diagonal", left_diagonal),
     Auton("left", defensive_left),
