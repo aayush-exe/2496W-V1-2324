@@ -89,11 +89,10 @@ void left_diagonal(){
     turn(-90, 1000);
     drive(800, 1200, 1, 70);
     delay(300);
-    drive(-120);
+    drive(-150);
     chas.spin_left(50);
     delay(1000);
     chas.stop();
-
 
 }
 
@@ -134,11 +133,8 @@ void offensive_right(){
     LwingsP.set(true);
     RwingsP.set(true);
     drive(-900, 1500, 3);
-    
     drive(500, 1500);
-   
-    
-    turn(90);
+    turn_to(135);
 
 }
 
