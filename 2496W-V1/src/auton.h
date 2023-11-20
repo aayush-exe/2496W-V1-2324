@@ -19,31 +19,7 @@ using namespace pros;
 using namespace std;
 using namespace pid;
 
-void defensive_left(){
-    drive(1100);
-    turn_to(45);
-    intake.move(127);
-    drive(375);
-    drive(-200);
-    turn(180);
-    drive(-450, 800, 2);
-    drive(250);
 
-    turn_to(45);
-    drive(-400);
-    turn_to(10);
-    hangP.set(true);
-    delay(200);
-    drive(-715);
-    turn(-20);
-    
-    drive(-600, 1500, 2);
-    hangP.set(false);
-    delay(100);
-    turn_to(-47);
-    blockerP.set(true);
-    drive(-1650);   
-}
 
 void new_left(){
     drive(450, 500);
@@ -250,6 +226,32 @@ void skills(){
     drive(1000);
 }
 
+void old_left(){
+    drive(1100);
+    turn_to(45);
+    intake.move(127);
+    drive(375);
+    drive(-200);
+    turn(180);
+    drive(-450, 800, 2);
+    drive(250);
+
+    turn_to(45);
+    drive(-400);
+    turn_to(10);
+    hangP.set(true);
+    delay(200);
+    drive(-715);
+    turn(-20);
+    
+    drive(-600, 1500, 2);
+    hangP.set(false);
+    delay(100);
+    turn_to(-47);
+    blockerP.set(true);
+    drive(-1650);   
+}
+
 
 void blank(){}
 
@@ -317,13 +319,13 @@ void test(){
 std::vector<Auton> autons
 {
     Auton("test", test),
-    Auton("newlegt", new_left),
+    Auton("new left", new_left),
     Auton("elims straight", left_straight),
     Auton("elims diagonal", left_diagonal),
-    Auton("left", defensive_left),
     Auton("right", offensive_right),
     Auton("pole right", right_bar),
     Auton("skills", skills),
+    Auton("OLD left", old_left),
     Auton("no auton", blank)
 };
 
