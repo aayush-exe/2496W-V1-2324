@@ -52,6 +52,7 @@ void opcontrol()
 			print_info(time, chassis_on);
 		}
 		
+		
 		if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_RIGHT)) chassis_on = !chassis_on;
 		if(con.get_digital(E_CONTROLLER_DIGITAL_UP) && chassis_on) autonomous();
 
