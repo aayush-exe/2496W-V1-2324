@@ -22,10 +22,10 @@ namespace glb
     #define P_CATA 15
     #define P_DISTANCE 3
     #define P_CATASWITCH 'A'
-    #define P_HANGP 'D'
+    #define P_HANGP 'C'
     #define P_RWINGSP 'G'
     #define P_LWINGSP 'H'
-    #define P_BLOCKERP 'C'
+    #define P_BLOCKERP 'D'
    
    
     //objects

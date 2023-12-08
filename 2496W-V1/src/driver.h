@@ -199,13 +199,13 @@ Auton auton_selector(std::vector<Auton> autons)
 }
 void piston_cont()
 {
-    if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_RIGHT)) hangP.toggle();
+    if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_Y)) blockerP.toggle();
     if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_L2)){
         LwingsP.toggle();
         RwingsP.toggle();
     }
-    if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_Y)){
-        blockerP.toggle();
+    if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_RIGHT)){
+        hangP.toggle();
     } 
 }
 

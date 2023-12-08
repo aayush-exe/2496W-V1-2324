@@ -22,13 +22,13 @@ using namespace pid;
 
 
 void new_left(){
-    drive(450, 500);
+    drive(600, 500);
     hangP.set(true);
     drive(-235);
     turn(-30, 800);
     hangP.set(false);
     turn_to(0);
-    drive(950, 800);
+    drive(825, 800);
     turn_to(45);
     intake.move(127);
     drive(375);
@@ -40,10 +40,10 @@ void new_left(){
     turn_to(45);
     drive(-400);
     turn_to(0, 600);
-    drive(-1100);
+    drive(-1200);
     turn_to(-47);
     blockerP.set(true);
-    drive(-1675);   
+    drive(-1750);   
 }
 
 void left_straight(){
