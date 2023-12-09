@@ -21,7 +21,7 @@ using namespace pid;
 
 
 
-void new_left(){
+void left_safe(){
     drive(600, 500);
     hangP.set(true);
     drive(-235);
@@ -96,8 +96,14 @@ void left_diagonal(){
 
 }
 
+void rush_right_block(){
 
-void offensive_right(){
+}
+
+void rush_right_straight(){
+
+}
+void right_safe_block(){
     hangP.set(true);
     drive(-685);
     chas.spin_left(-127);
@@ -138,7 +144,7 @@ void offensive_right(){
 
 }
 
-void right_bar(){
+void right_safe_bar(){
     hangP.set(true);
     drive(-630);
     chas.spin_left(-127);
@@ -315,11 +321,13 @@ void test(){
 std::vector<Auton> autons
 {
     Auton("test", test),
-    Auton("new left", new_left),
+    Auton("safe left", left_safe),
     Auton("elims straight", left_straight),
     Auton("elims diagonal", left_diagonal),
-    Auton("right", offensive_right),
-    Auton("pole right", right_bar),
+    Auton("rush right (blocker)", rush_right_block),
+    Auton("rush right (straight)", rush_right_straight),
+    Auton("block safe right", right_safe_block),
+    Auton("bar safe right", right_safe_bar),
     Auton("skills", skills),
     Auton("OLD left", old_left),
     Auton("no auton", blank)
