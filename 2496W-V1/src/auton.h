@@ -109,39 +109,41 @@ void rush_right_block(){ // trigger half cata -- editing this one
     
     turn_to(-90, 700, 1, 80);
     hangP.set(false);
-    RwingsP.set(true);
-    drive(-700, 200);
+    turn_to(100, 800);
     
-    RwingsP.set(false);
-    turn_to(90, 600);
+    intake.move(90);
+    drive(-200, 500);
     
-    intake.move(127);
-    drive(-100, 200);
+    turn_to(-80);
     
-    turn_to(-70);
-    RwingsP.set(true);
-    LwingsP.set(true);
-    drive(-850, 800, 5);
+    hangP.set(true);
+    
+    drive(-1050, 1000, 20);
+    drive(200, 200);
+    turn_to(-70, 400);
+    drive(-600, 400, 20);
     intake.move(-127);
-    RwingsP.set(false);
-    LwingsP.set(false);
+    
+    hangP.set(false);
 
     drive(600, 300);
     turn_to(0);
-    drive(1000, 1000);
+    drive(950, 1000);
     turn_to(52);
-    drive(2220);
+    drive(2350);
     
-    turn_to(180);
-    intake.move(100);
-    drive(-100, 200);
+    turn_to(175);
+    intake.move(127);
+    drive(-100, 300);
     turn_to(0);
 
     LwingsP.set(true);
     RwingsP.set(true);
-    drive(-1550, 900, 3);
-    drive(500, 300);
-    turn_to(-90, 300);
+    drive(-1600, 900, 3);
+    drive(500, 200);
+    LwingsP.set(false);
+    RwingsP.set(false);
+    turn_to(-90);
     blockerP.set(true);
 }
 
@@ -158,39 +160,41 @@ void rush_right_straight(){// trigger half cata
     
     turn_to(-90, 700, 1, 80);
     hangP.set(false);
-    RwingsP.set(true);
-    drive(-700, 200);
+    turn_to(100, 800);
     
-    RwingsP.set(false);
-    turn_to(90, 600);
+    intake.move(90);
+    drive(-200, 500);
     
-    intake.move(127);
-    drive(-100, 200);
+    turn_to(-80);
     
-    turn_to(-70);
-    RwingsP.set(true);
-    LwingsP.set(true);
-    drive(-850, 800, 5);
+    hangP.set(true);
+    
+    drive(-1050, 1000, 20);
+    drive(200, 200);
+    turn_to(-70, 400);
+    drive(-600, 400, 20);
     intake.move(-127);
-    RwingsP.set(false);
-    LwingsP.set(false);
+    
+    hangP.set(false);
 
     drive(600, 300);
     turn_to(0);
-    drive(1000, 1000);
+    drive(950, 1000);
     turn_to(52);
-    drive(2220);
+    drive(2350);
     
-    turn_to(180);
-    intake.move(100);
-    drive(-100, 200);
+    turn_to(175);
+    intake.move(127);
+    drive(-100, 300);
     turn_to(0);
 
     LwingsP.set(true);
     RwingsP.set(true);
-    drive(-1550, 900, 3);
-    drive(500, 300);
-    turn_to(90, 300);
+    drive(-1600, 900, 3);
+    drive(500, 200);
+    LwingsP.set(false);
+    RwingsP.set(false);
+    turn_to(90);
 
 }
 void right_safe_block(){ // trigger half cata -- edting this one #1 safe
@@ -265,57 +269,57 @@ void right_safe_bar(){ // trigger half cata -- edting this one #2 safe
 
 void skills(){
     
-    drive(50, 100);
-    matchload(47);
-    intake.move(127);
-
+    drive(50, 75);
+    //matchload(47);
+    
     drive(-50, 200);
     turn(32);
     drive(-900);
     turn_to(0);
-    drive(-3400, 1000);
+    drive(-3500);
 
-    turn_to(-45, 400);
-    chas.spin_left(0);
+    turn_to(-45);
+    
     delay(100);
     LwingsP.set(true);
-    drive(-1650, 900);
+    drive(-1650);
     delay(100);
     
     // chas.spin_left(-127);
     // delay(170);
     // chas.spin_left(0);
     LwingsP.set(false);
-    turn_to(-90, 400);
-    drive_variable(-700, 2, 1000);
-    drive(600, 500);
+    turn_to(-90);
+    drive_variable(-700, 10, 1000);
+    drive(600);
    
-    drive_variable(-600, 3, 1000);
-    drive(280, 200);
+    drive_variable(-600, 10, 1000);
+    drive(280, 300);
 
-    turn_to(0); // ahahaha
-    drive(1000, 800);
-    turn_to(45, 300);
-    drive(700, 800);
-    turn_to(0, 300);
-    drive(825, 800);
+    turn_to(0, 500); // ahahaha
+    drive(1000);
+    turn_to(45, 500);
+    drive(700, 500);
+    turn_to(0);
+    drive(825);
      
-    turn_to(-90, 300);
-    drive(-1500, 1000);
+    turn_to(-90, 500);
+    drive(-3000);
 
-    turn_to(0, 300);
+    turn_to(30, 500);
     
 
     LwingsP.set(true);
     RwingsP.set(true);
-    drive(-1400, 1000, 3);
-    drive(1500, 800);
-
-    turn(-15, 400);
+    drive(-1600, 1000, 3);
+    drive(1700);
+    turn_to(90, 500);
+    drive(-800);
+    turn_to(0, 500);
     drive(-1500, 1500, 3);
     drive(1500);
 
-    turn(30);
+    turn_to(30, 500);
     drive(-1500, 1500, 3);
     drive(1000);
 }
@@ -517,18 +521,18 @@ void test(){
 
 std::vector<Auton> autons
 {
-    Auton("safe left", left_safe),
-    Auton("block rush right", rush_right_block),
-    Auton("straight rush right", rush_right_straight),
-    Auton("block safe right", right_safe_block),
-    Auton("bar safe right", right_safe_bar),
-    Auton("elims straight", left_straight),
-    Auton("elims diagonal", left_diagonal),
-    Auton("skills", skills),
-    Auton("OLD left", old_left),
-    Auton("OLD right", old_right),
-    Auton("no auton", blank),
-    Auton("test", test)
+    Auton("safe left", left_safe, "done"),
+    Auton("block rush right", rush_right_block, "done"),
+    Auton("straight rush right", rush_right_straight, "need to tune"),
+    Auton("block safe right", right_safe_block, "need to make"),
+    Auton("bar safe right", right_safe_bar, "need to make"),
+    Auton("elims straight", left_straight, "done"),
+    Auton("elims diagonal", left_diagonal, "done"),
+    Auton("skills", skills, "need to run with triballs"),
+    Auton("OLD left", old_left, "old"),
+    Auton("OLD right", old_right, "old"),
+    Auton("no auton", blank, "blank"),
+    Auton("test", test, "test_function")
 };
 
 #endif

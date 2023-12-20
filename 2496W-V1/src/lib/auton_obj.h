@@ -13,12 +13,14 @@ class Auton
 private:
     std::string name;
     fptr auton;
+    std::string status;
 
 public:
-    Auton(std::string init_name, fref init_auton)
+    Auton(std::string init_name, fref init_auton, std::string init_status)
     {
         name = init_name;
         auton = init_auton;
+        status = init_status;
     }
 
     void run() 
