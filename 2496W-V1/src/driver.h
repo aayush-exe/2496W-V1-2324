@@ -170,12 +170,12 @@ Auton auton_selector(std::vector<Auton> autons)
     {
         if(!glb::con.get_digital(pros::E_CONTROLLER_DIGITAL_A))
         {
-            if(timer % 50 == 0) 
+            if(timer % 50 == 0 && timer % 100 != 0) 
                 glb::con.print(0, 0, "Select: %s         ", autons.at(selected).get_name());
-
+            if(timer % 100 == 0) 
+                glb::con.print(1, 0, "%s            ", autons.at(selected).get_d());
             if(glb::con.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_LEFT) && selected > 0)
                 selected--;
-
             if(glb::con.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_RIGHT) && selected < autons.size()-1)
                 selected++;
         }
@@ -184,10 +184,13 @@ Auton auton_selector(std::vector<Auton> autons)
             pros::delay(50);
             glb::con.clear();
             pros::delay(50);
-            glb::con.print(0, 0, "Selected Items:         "); 
+            glb::con.print(0, 0, "selected:         "); 
             pros::delay(50);
             //glb::con.print(0, 0, "Selected           ");   
-            glb::con.print(1, 0, "Auton: %s         ", autons.at(selected).get_name());   
+            glb::con.print(1, 0, "auton: %s         ", autons.at(selected).get_name());   
+            pros::delay(50);
+            //glb::con.print(0, 0, "Selected           ");   
+            glb::con.print(2, 0, "%s             ", autons.at(selected).get_d()); 
             pros::delay(1500);
             glb::con.clear();
             return autons.at(selected);

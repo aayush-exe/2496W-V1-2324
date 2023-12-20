@@ -32,6 +32,11 @@ public:
     {
         return name;
     } 
+
+    std::string get_d()
+    { 
+        return status;
+    }
 };
 
 #endif
