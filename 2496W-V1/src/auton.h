@@ -120,7 +120,7 @@ void rush_right_block(){ // trigger half cata -- editing this one
     
     drive(-1050, 1000, 20);
     drive(200, 200);
-    turn_to(-70, 400);
+    // turn_to(-70, 400);
     drive(-600, 400, 20);
     intake.move(-127);
     
@@ -171,7 +171,7 @@ void rush_right_straight(){// trigger half cata
     
     drive(-1050, 1000, 20);
     drive(200, 200);
-    turn_to(-70, 400);
+    // turn_to(-70, 400);
     drive(-600, 400, 20);
     intake.move(-127);
     
@@ -197,46 +197,29 @@ void rush_right_straight(){// trigger half cata
     turn_to(90);
 
 }
-void right_safe_block(){ // trigger half cata -- edting this one #1 safe
-    
+void right_safe_bar(){ // trigger half cata -- edting this one #1 safe
     hangP.set(true);
     drive(-685);
-    turn_to(-60);
+    turn_to(-20);
     drive(-100, 100);
-    hangP.set(false);
-    LwingsP.set(true);
-    turn_to(-90);
-    drive(-500);
-    LwingsP.set(false);
-    turn_to(90);
-    intake.move(127);
-    drive(100, 100);
-    turn_to(-90);
-    drive(-750, 1500, 5);
-    intake.move(-127);
-    
-    drive(600);
-    turn_to(0);
-    drive(1000, 1000);
-    turn_to(55);
-    
-    drive(2220);
-    delay(100);
-    turn_to(180);
-    drive(200);
-    intake.move(127);
-    drive(-200);
-    turn_to(0);
-    LwingsP.set(true);
-    RwingsP.set(true);
-    drive(-900, 1500, 3);
+    turn_to(-45);
+    drive(-1000, 1500, 2);
     drive(500);
-    turn_to(-90);
+    drive(-500, 1500, 2);
+    drive(850);
+    turn_to(0);
+    drive(-685);
+    turn_to(-135);
     blockerP.set(true);
+    drive(-2000);
+
+
+
+    
 
 }
 
-void right_safe_bar(){ // trigger half cata -- edting this one #2 safe
+void old_safe_right(){ // trigger half cata -- edting this one #2 safe
     hangP.set(true);
     drive(-685);
     turn_to(-60);
@@ -267,13 +250,13 @@ void right_safe_bar(){ // trigger half cata -- edting this one #2 safe
 }
 
 
-void skills(){
+void skills_V1(){
     
-    drive(50, 75);
-    //matchload(47);
+    drive(100, 100);
+    matchload(47);
     
     drive(-50, 200);
-    turn(32);
+    turn(32); // make this absolute eh :shrug:
     drive(-900);
     turn_to(0);
     drive(-3500);
@@ -297,11 +280,11 @@ void skills(){
     drive(280, 300);
 
     turn_to(0, 500); // ahahaha
-    drive(1000);
+    drive(1000, 1000);
     turn_to(45, 500);
     drive(700, 500);
     turn_to(0);
-    drive(825);
+    drive(900);
      
     turn_to(-90, 500);
     drive(-3000);
@@ -322,6 +305,70 @@ void skills(){
     turn_to(30, 500);
     drive(-1500, 1500, 3);
     drive(1000);
+}
+
+void skills_V2(){
+    
+    drive(100, 100);
+    matchload(47);
+    
+    drive(-50, 200);
+    turn(32); // make this absolute eh :shrug:
+    drive(-900);
+    turn_to(0);
+    drive(-3500);
+
+    turn_to(-45);
+    
+    delay(100);
+    LwingsP.set(true);
+    drive(-1650);
+    delay(100);
+    
+    // chas.spin_left(-127);
+    // delay(170);
+    // chas.spin_left(0);
+    LwingsP.set(false);
+    turn_to(-90);
+    drive_variable(-700, 10, 1000);
+    drive(600);
+   
+    drive_variable(-600, 10, 1000);
+    drive(280, 300);
+
+    turn_to(0, 500); // ahahaha
+    drive(1000, 1000);
+    turn_to(45, 500);
+    drive(700, 500);
+    turn_to(0);
+    drive(900);
+     
+    turn_to(-90, 500);
+    drive(-900);
+
+    turn_to(0, 500);
+    
+    RwingsP.set(true);
+    drive(-1600, 1000, 3);
+    drive(1700);
+    turn_to(-90, 500);
+    
+    drive(-1500);
+    turn_to(0, 500);
+    RwingsP.set(true);
+    LwingsP.set(true);
+    drive(-1600, 1000, 3);
+    drive(1700);
+    // turn_to(-90, 500);
+
+
+    // turn_to(0, 500);
+    // drive(-1500, 1500, 3);
+    // drive(1500);
+
+    // turn_to(30, 500);
+    // drive(-1500, 1500, 3);
+    // drive(1000);
 }
 
 void old_left(){
@@ -524,13 +571,14 @@ std::vector<Auton> autons
     Auton("safe left", left_safe, "done"),
     Auton("block rush right", rush_right_block, "done"),
     Auton("straight rush right", rush_right_straight, "need to tune"),
-    Auton("block safe right", right_safe_block, "need to make"),
-    Auton("bar safe right", right_safe_bar, "need to make"),
+    Auton("bar safe right", right_safe_bar, "need to tune"),
     Auton("elims straight", left_straight, "done"),
     Auton("elims diagonal", left_diagonal, "done"),
-    Auton("skills", skills, "need to run with triballs"),
+    Auton("V1 SKILLS", skills_V1, "need to run with triballs"),
+    Auton("V2 SKILLS", skills_V2, "need to run with triballs"),
     Auton("OLD left", old_left, "old"),
     Auton("OLD right", old_right, "old"),
+    Auton("OLD SAFE right", old_safe_right, "old"),
     Auton("no auton", blank, "blank"),
     Auton("test", test, "test_function")
 };
