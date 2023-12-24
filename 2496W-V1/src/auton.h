@@ -28,7 +28,7 @@ void left_safe(){
     turn(-30, 800);
     hangP.set(false);
     turn_to(0);
-    drive(825, 800);
+    drive(775, 800);
     turn_to(45);
     intake.move(127);
     drive(375);
@@ -201,20 +201,18 @@ void right_safe_bar(){ // trigger half cata -- edting this one #1 safe
     hangP.set(true);
     drive(-685);
     turn_to(-20);
-    drive(-100, 100);
+    drive(-300, 300);
     turn_to(-45);
+    hangP.set(false);
     drive(-1000, 1500, 2);
     drive(500);
     drive(-500, 1500, 2);
     drive(850);
     turn_to(0);
-    drive(-685);
+    drive(685);
     turn_to(-135);
     blockerP.set(true);
-    drive(-2000);
-
-
-
+    drive(-1950);
     
 
 }
@@ -570,12 +568,12 @@ std::vector<Auton> autons
 {
     Auton("safe left", left_safe, "done"),
     Auton("block rush right", rush_right_block, "done"),
-    Auton("straight rush right", rush_right_straight, "need to tune"),
-    Auton("bar safe right", right_safe_bar, "need to tune"),
+    Auton("straight rush right", rush_right_straight, "done"),
+    Auton("bar safe right", right_safe_bar, "test on field"),
     Auton("elims straight", left_straight, "done"),
     Auton("elims diagonal", left_diagonal, "done"),
-    Auton("V1 SKILLS", skills_V1, "need to run with triballs"),
-    Auton("V2 SKILLS", skills_V2, "need to run with triballs"),
+    Auton("V1 SKILLS", skills_V1, "run with triballs"),
+    Auton("V2 SKILLS", skills_V2, "run with triballs"),
     Auton("OLD left", old_left, "old"),
     Auton("OLD right", old_right, "old"),
     Auton("OLD SAFE right", old_safe_right, "old"),
