@@ -37,7 +37,8 @@ void opcontrol()
 	chas.reset();
 	
 
-	if ((*auton).get_name() == "skills") pid::global_heading = 337;
+	if ((*auton).get_name() == "V1 skills") pid::global_heading = 337;
+	if ((*auton).get_name() == "V2 skills") pid::global_heading = 337;
 	
 
 	while(true)
