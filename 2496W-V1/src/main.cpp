@@ -36,10 +36,7 @@ void opcontrol()
 	chas.set_brake();
 	chas.reset();
 	
-
-	if ((*auton).get_name() == "V1 skills") pid::global_heading = 337;
-	if ((*auton).get_name() == "V2 skills") pid::global_heading = 337;
-	
+	if ((*auton).get_name() == "V1 skills" || (*auton).get_name() == "V2 skills") pid::global_heading = 337;
 
 	while(true)
 	{
@@ -49,10 +46,9 @@ void opcontrol()
 		intakeCon();
 		cataConHalf(time);
 		piston_cont();
-		if ((*auton).get_name() != "SKILLS"){
+		if ((*auton).get_name() != "V1 skills" && (*auton).get_name() != "V2 skills"){
 			print_info(time, chassis_on);
 		}
-		
 		
 		if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_LEFT)) chassis_on = !chassis_on;
 		if(con.get_digital(E_CONTROLLER_DIGITAL_UP) && chassis_on) autonomous();
