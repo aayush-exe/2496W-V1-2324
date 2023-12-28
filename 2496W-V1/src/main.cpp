@@ -26,7 +26,10 @@ void initialize() {
 	
 }
 
-void autonomous() {(*auton).run();}
+void autonomous() {
+	cata.tare_position();
+	(*auton).run();
+}
 
 void opcontrol() 
 {
