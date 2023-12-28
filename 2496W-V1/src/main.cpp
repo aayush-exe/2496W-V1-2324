@@ -35,6 +35,7 @@ void opcontrol()
 	bool chassis_on = true;
 	chas.set_brake();
 	chas.reset();
+	cata.tare_position();
 	
 	if ((*auton).get_name() == "V1 skills" || (*auton).get_name() == "V2 skills") pid::global_heading = 337;
 

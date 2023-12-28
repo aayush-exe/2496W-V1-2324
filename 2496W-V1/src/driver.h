@@ -112,49 +112,57 @@ void cataCon(int time)
 }
 void cataConHalf(int time)
 {
-    static bool halfCata = false;
-    static bool cataPressed;
+    bool halfCata = true;
+    static bool cataPressed = true;
     static bool matchload = false; 
-    bool cataCheck = cataLimit.get_value();
-    double pos = abs(cata.get_position());
+    int pos = ((int) (abs(cata.get_position()))) % 1800;
+
     static int deadzone = 1500;
+    bool cataCheck = (deadzone < pos && pos < 1590);
+    bool buttonb = con.get_digital(pros::E_CONTROLLER_DIGITAL_L1);
+
 
 
     
-    if (con.get_digital(pros::E_CONTROLLER_DIGITAL_L1))
-        cataPressed = true;
+
     if (!matchload){
-        if (!cataCheck)
+        if (true)
         { 
-            if (halfCata && (deadzone < pos && pos < 1590) && cataPressed == false)
+            if (halfCata && (deadzone < pos && pos < 1590) && !buttonb)
             {
                 cata.move(0);
                 deadzone = 1400;
+                cataPressed = false;
             }
             else 
             {
                 deadzone = 1500;
                 cata.move(-127);
-                cataPressed = false;
+                cataPressed = true;
             }
         }
-        else if (cataPressed && cataCheck)
+        if (buttonb)
+            cataPressed = true;
+        if (cataPressed)
             cata.move(-127);
         else 
         {
             cata.move(0);
-            cata.tare_position();
+            // cata.tare_position();
         }
     }
     else{
         cata.move(-127);
     }
 
-    if (con.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_B))
-        halfCata = !halfCata;
+    // if (con.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_B))
+    //     halfCata = !halfCata;
     
-    if (halfCata && (time%2000 == 0))
-        con.rumble(".");
+    // if (halfCata && (time%200 == 0))
+    // {
+    //     //con.rumble(".");
+    //     con.print(0,0, "%2f", pos);
+    // }
     
     if (con.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_DOWN)){
         matchload = !matchload;

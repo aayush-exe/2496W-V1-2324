@@ -22,6 +22,9 @@ using namespace pid;
 
 
 void left_safe(){
+    blockerP.set(true);
+    delay(1);
+    blockerP.set(false);
     drive(600, 500);
     hangP.set(true);
     drive(-235);
@@ -47,6 +50,9 @@ void left_safe(){
 }
 
 void left_straight(){
+    blockerP.set(true);
+    delay(1);
+    blockerP.set(false);
     drive(1100);
     turn(45);
     intake.move(127);
@@ -72,6 +78,9 @@ void left_straight(){
 }
 
 void left_diagonal(){
+    blockerP.set(true);
+    delay(1);
+    blockerP.set(false);
     drive(1100);
     turn(45);
     intake.move(127);
@@ -97,6 +106,9 @@ void left_diagonal(){
 }
 
 void rush_right_block(){ // trigger half cata -- editing this one 
+    blockerP.set(true);
+    delay(1);
+    blockerP.set(false);
     intake.move(-127);
     drive(200, 300);
     intake.move(0);
@@ -148,6 +160,9 @@ void rush_right_block(){ // trigger half cata -- editing this one
 }
 
 void rush_right_straight(){// trigger half cata 
+    blockerP.set(true);
+    delay(1);
+    blockerP.set(false);
     intake.move(-127);
     drive(200, 300);
     intake.move(0);
@@ -198,6 +213,9 @@ void rush_right_straight(){// trigger half cata
 
 }
 void right_safe_bar(){ // trigger half cata -- edting this one #1 safe
+    blockerP.set(true);
+    delay(1);
+    blockerP.set(false);
     hangP.set(true);
     drive(-685);
     turn_to(-20);
@@ -209,10 +227,10 @@ void right_safe_bar(){ // trigger half cata -- edting this one #1 safe
     drive(-500, 1500, 2);
     drive(850);
     turn_to(0);
-    drive(685);
+    drive(900);
     turn_to(-135);
     blockerP.set(true);
-    drive(-1950);
+    drive(-2000);
     
 
 }
