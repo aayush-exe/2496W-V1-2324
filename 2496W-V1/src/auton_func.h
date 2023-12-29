@@ -46,17 +46,16 @@ void matchload(int triballs)
 
 void matchload_time(int triballs)
 {
-    int count = 0;
     int time = 0;
-    int perTLoad = 777;
+    int perTLoad = 693;
     while (time <= (perTLoad * triballs))
     {
         cata.move(-127);
         delay(10);
-        count += 10;
+        time += 10;
     }
     int pos = ((int) (abs(cata.get_position()))) % 1800;
-    while (!(1500 < pos && pos < 1590)){
+    while (1640 > pos){
         cata.move(-127);
         pos = ((int) (abs(cata.get_position()))) % 1800;
     }
@@ -66,7 +65,7 @@ void matchload_time(int triballs)
 void halfCata(){
     double pos = abs(cata.get_position());
 
-    while (!(1500 < pos && pos < 1590)) cata.move(-127);
+    while (!(1610 < pos && pos < 1700)) cata.move(-127);
     cata.move(0);
 }
 

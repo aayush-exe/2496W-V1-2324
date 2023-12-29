@@ -22,9 +22,7 @@ using namespace pid;
 
 
 void left_safe(){
-    blockerP.set(true);
-    delay(1);
-    blockerP.set(false);
+    
     drive(600, 500);
     hangP.set(true);
     drive(-235);
@@ -46,12 +44,12 @@ void left_safe(){
     drive(-1200);
     turn_to(-47);
     blockerP.set(true);
-    drive(-1750);   
+    drive(-1675);   
 }
 
 void left_straight(){
     blockerP.set(true);
-    delay(1);
+    delay(500);
     blockerP.set(false);
     drive(1100);
     turn(45);
@@ -79,7 +77,7 @@ void left_straight(){
 
 void left_diagonal(){
     blockerP.set(true);
-    delay(1);
+    delay(500);
     blockerP.set(false);
     drive(1100);
     turn(45);
@@ -107,7 +105,7 @@ void left_diagonal(){
 
 void rush_right_block(){ // trigger half cata -- editing this one 
     blockerP.set(true);
-    delay(1);
+    delay(500);
     blockerP.set(false);
     intake.move(-127);
     drive(200, 300);
@@ -161,7 +159,7 @@ void rush_right_block(){ // trigger half cata -- editing this one
 
 void rush_right_straight(){// trigger half cata 
     blockerP.set(true);
-    delay(1);
+    delay(500);
     blockerP.set(false);
     intake.move(-127);
     drive(200, 300);
@@ -214,23 +212,24 @@ void rush_right_straight(){// trigger half cata
 }
 void right_safe_bar(){ // trigger half cata -- edting this one #1 safe
     blockerP.set(true);
-    delay(1);
-    blockerP.set(false);
+    delay(500);
     hangP.set(true);
-    drive(-685);
-    turn_to(-20);
-    drive(-300, 300);
-    turn_to(-45);
+    blockerP.set(false);
+    drive(-700, 1000);
+    turn_to(-30, 500);
+    drive(-400, 600);
+    turn_to(-45, 500);
+    
     hangP.set(false);
-    drive(-1000, 1500, 2);
+    drive(-1000, 1000, 2);
     drive(500);
-    drive(-500, 1500, 2);
-    drive(850);
+    drive(-1000, 1000, 2);
+    drive(650);
     turn_to(0);
-    drive(900);
-    turn_to(-135);
+    drive(1300, 900);
+    turn_to(-135, 700);
     blockerP.set(true);
-    drive(-2000);
+    drive(-1700);
     
 
 }
@@ -267,14 +266,15 @@ void old_safe_right(){ // trigger half cata -- edting this one #2 safe
 
 
 void skills_V1(){
-    
+    //cata.tare_position();
     drive(100, 100);
-    matchload(47);
+    matchload_time(45); //45
+    intake.move(127);
     
     drive(-50, 200);
-    turn(32); // make this absolute eh :shrug:
+    turn(32, 800); // make this absolute eh :shrug:
     drive(-900);
-    turn_to(0);
+    turn_to(-2, 1000);
     drive(-3500);
 
     turn_to(-45);
@@ -282,51 +282,62 @@ void skills_V1(){
     delay(100);
     LwingsP.set(true);
     drive(-1650);
-    delay(100);
+    
     
     // chas.spin_left(-127);
     // delay(170);
     // chas.spin_left(0);
     LwingsP.set(false);
-    turn_to(-90);
-    drive_variable(-700, 10, 1000);
-    drive(600);
+    turn_to(-90, 1000);
+    drive_variable(-700, 10, 900);
+    drive(600, 600);
+    drive_variable(-600, 10, 950);
+    drive(375, 300);
    
-    drive_variable(-600, 10, 1000);
-    drive(280, 300);
+    
 
     turn_to(0, 500); // ahahaha
-    drive(1000, 1000);
-    turn_to(45, 500);
-    drive(700, 500);
-    turn_to(0);
-    drive(900);
+    drive(1000, 1000);//gerald was here
+    turn_to(45, 600);
+    drive(700, 600);
+    turn_to(0, 600);
+    drive(900, 1000);
      
-    turn_to(-90, 500);
-    drive(-3000);
+    turn_to(-90, 900);
+    drive(-1000, 1500);
 
-    turn_to(30, 500);
+    turn_to(0, 1000);
     
 
     LwingsP.set(true);
     RwingsP.set(true);
     drive(-1600, 1000, 3);
-    drive(1700);
-    turn_to(90, 500);
-    drive(-800);
-    turn_to(0, 500);
-    drive(-1500, 1500, 3);
-    drive(1500);
+    LwingsP.set(false);
+    RwingsP.set(false);
+    drive(1800);
+    
+    turn_to(-90, 1200);
+    drive(-1400, 1500);
+    turn_to(20, 1000);
+    LwingsP.set(true);
+    RwingsP.set(true);
+    drive(-1600, 1500, 3);
+    turn_to(-10, 900);
+    LwingsP.set(false);
+    RwingsP.set(false);
+    drive(1500, 1000);
 
-    turn_to(30, 500);
-    drive(-1500, 1500, 3);
-    drive(1000);
+    turn_to(0, 500);
+    LwingsP.set(true);
+    RwingsP.set(true);
+    drive(-1500, 1500, 5);
+    drive(1300);
 }
 
 void skills_V2(){
-    
+    cata.tare_position();
     drive(100, 100);
-    matchload(47);
+    //matchload(47);
     
     drive(-50, 200);
     turn(32); // make this absolute eh :shrug:
@@ -346,24 +357,24 @@ void skills_V2(){
     // chas.spin_left(0);
     LwingsP.set(false);
     turn_to(-90);
-    drive_variable(-700, 10, 1000);
-    drive(600);
-   
-    drive_variable(-600, 10, 1000);
+    drive_variable(-900, 10, 1000);
     drive(280, 300);
 
     turn_to(0, 500); // ahahaha
     drive(1000, 1000);
     turn_to(45, 500);
-    drive(700, 500);
+    drive(600, 500);
     turn_to(0);
     drive(900);
      
     turn_to(-90, 500);
+    
+
     drive(-900);
 
     turn_to(0, 500);
     
+    LwingsP.set(true);
     RwingsP.set(true);
     drive(-1600, 1000, 3);
     drive(1700);

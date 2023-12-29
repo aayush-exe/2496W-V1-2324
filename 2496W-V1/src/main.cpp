@@ -27,7 +27,7 @@ void initialize() {
 }
 
 void autonomous() {
-	cata.tare_position();
+	
 	(*auton).run();
 }
 

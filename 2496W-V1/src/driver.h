@@ -117,26 +117,22 @@ void cataConHalf(int time)
     static bool matchload = false; 
     int pos = ((int) (abs(cata.get_position()))) % 1800;
 
-    static int deadzone = 1500;
-    bool cataCheck = (deadzone < pos && pos < 1590);
+    static int deadzone = 1600;
+    bool cataCheck = (deadzone < pos && pos < 1690);
     bool buttonb = con.get_digital(pros::E_CONTROLLER_DIGITAL_L1);
-
-
-
-    
 
     if (!matchload){
         if (true)
         { 
-            if (halfCata && (deadzone < pos && pos < 1590) && !buttonb)
+            if (halfCata && (deadzone < pos && pos < 1690) && !buttonb)
             {
                 cata.move(0);
-                deadzone = 1400;
+                deadzone = 1500;
                 cataPressed = false;
             }
             else 
             {
-                deadzone = 1500;
+                deadzone = 1600;
                 cata.move(-127);
                 cataPressed = true;
             }
