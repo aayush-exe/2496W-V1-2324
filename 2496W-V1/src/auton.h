@@ -76,9 +76,7 @@ void left_straight(){
 }
 
 void left_diagonal(){
-    blockerP.set(true);
-    delay(500);
-    blockerP.set(false);
+    
     drive(1100);
     turn(45);
     intake.move(127);
@@ -103,30 +101,72 @@ void left_diagonal(){
 
 }
 
+void elims_left(){
+    chas.spin(-127);
+    delay(520);
+    LwingsP.set(true);
+    RwingsP.set(true);
+    //drive(-800);
+    chas.stop();
+    delay(200);
+    turn_to(80, 600);
+    drive(-1500, 1000);
+    LwingsP.set(false);
+    RwingsP.set(false);
+    turn_to(90);
+    chas.spin(100);
+    delay(400);
+   // drive(1400, 2000, 1, 100);
+    intake.move(127);
+    chas.spin(60);
+    delay(650);
+    chas.stop();
+    drive(-300, 800);
+    intake.move(0);
+    // turn_to(-90);
+    // drive(-450,800);
+    // drive(320, 1000);
+    turn_to(0);
+    drive(2600, 2000);
+    turn_to(75);
+    drive(-300, 700);
+    turn_to(65);
+    chas.spin(30);
+    delay(1800);
+    chas.stop();
+
+    intake.move(0);
+    //turn_to(90,800);
+    //turn_to(135);
+
+    
+
+}
+
 void rush_right_block(){ // trigger half cata -- editing this one 
-    blockerP.set(true);
-    delay(500);
-    blockerP.set(false);
+   
     intake.move(-127);
     drive(200, 300);
     intake.move(0);
     drive(-1600, 950);
 
-    turn_to(-37, 300);
+    turn_to(-34, 300);
     hangP.set(true);
     delay(100);
-    drive(-1000, 900, 1, 75);
+    drive(-1200, 900, 1, 75);
     
     turn_to(-90, 700, 1, 80);
     hangP.set(false);
     turn_to(100, 800);
     
-    intake.move(90);
+    intake.move(55);
     drive(-200, 500);
     
-    turn_to(-80);
+    turn_to(-70);
     
     hangP.set(true);
+    LwingsP.set(true);
+    RwingsP.set(true);
     
     drive(-1050, 1000, 20);
     drive(200, 200);
@@ -135,17 +175,21 @@ void rush_right_block(){ // trigger half cata -- editing this one
     intake.move(-127);
     
     hangP.set(false);
+    LwingsP.set(false);
+    RwingsP.set(false);
+    
 
     drive(600, 300);
     turn_to(0);
     drive(950, 1000);
-    turn_to(52);
+    turn_to(53);
     drive(2350);
     
     turn_to(175);
     intake.move(127);
+    delay(100);
     drive(-100, 300);
-    turn_to(0);
+    turn_to(5);
 
     LwingsP.set(true);
     RwingsP.set(true);
@@ -599,6 +643,7 @@ std::vector<Auton> autons
     Auton("block rush right", rush_right_block, "done"),
     Auton("straight rush right", rush_right_straight, "done"),
     Auton("bar safe right", right_safe_bar, "test on field"),
+    Auton("elims rush", elims_left, "lardbots"),
     Auton("elims straight", left_straight, "done"),
     Auton("elims diagonal", left_diagonal, "done"),
     Auton("V1 skills", skills_V1, "DONT CHANGE NAME, run with triballs"),
